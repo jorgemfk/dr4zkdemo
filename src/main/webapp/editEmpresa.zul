@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+                 <!--div apply="mx.dr.ml.view.controller.RegisterComensalController"-->
+                 <window apply="mx.dr.forms.controller.DRGenericController" title="#" closable="true">
+                    <grid width="500px" >
+                        <rows>
+                            <row >
+                                <toolbarbutton id="generalAction" label="${c:l('catalogo.guardar')}" sclass="btnzul"/>
+                            </row>
+                        </rows>
+                    </grid>
+                </window>
+</zk>
