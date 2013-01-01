@@ -1,8 +1,24 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
+*
+*
+* Copyright (C) 2012 Jorge Luis Martinez Ramirez
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU Lesser General Public License as
+* published by the Free Software Foundation, either version 3 of the
+* License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public License
+* along with this program. If not, see <http://www.gnu.org/licenses/>.
+*
+* Author: Jorge Luis Martinez Ramirez
+* Email: jorgemfk1@gmail.com
+*/
 package mx.dr.ml.servlet;
 
 import java.util.Date;
@@ -11,12 +27,12 @@ import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import mx.dr.ml.service.ICatalogoService;
+import mx.dr.ml.service.ICatalogService;
 import mx.dr.ml.service.util.WebServiceLocator;
 import mx.test.vo.CatalogStatus;
-import mx.test.vo.Categoria;
-import mx.test.vo.CategoriaMain;
-import mx.test.vo.Estado;
+import mx.test.vo.Category;
+import mx.test.vo.MainCategory;
+import mx.test.vo.City;
 
 /**
  *
@@ -45,35 +61,35 @@ public class InitListener implements ServletContextListener {
 
         public void run() {
             System.out.println("Hilo de temporales....");
-            ICatalogoService  service =(ICatalogoService)  WebServiceLocator.getBean(ICatalogoService.class, servletContext);
+            ICatalogService  service =(ICatalogService)  WebServiceLocator.getBean(ICatalogService.class, servletContext);
             try {
-                CategoriaMain cat = new CategoriaMain();
+                MainCategory cat = new MainCategory();
                 cat.setEstatusEnum(CatalogStatus.ACTIVE);
-                cat.setFechaAlta(new Date());
-                cat.setNombre("Restaurant");
+                cat.setRegistryDate(new Date());
+                cat.setName("Restaurant");
                 service.save(cat);
                 
-                cat = new CategoriaMain();
+                cat = new MainCategory();
                 cat.setEstatusEnum(CatalogStatus.ACTIVE);
-                cat.setFechaAlta(new Date());
-                cat.setNombre("Bar");
+                cat.setRegistryDate(new Date());
+                cat.setName("Bar");
                 service.save(cat);
                 
-                Categoria c= new Categoria();
+                Category c= new Category();
                 c.setEstatusEnum(CatalogStatus.ACTIVE);
-                c.setNombre("Canta Bar");
-                c.setPadre(cat);
+                c.setName("Kareoke");
+                c.setFather(cat);
                 service.save(c);
                 
-                Estado estado= new Estado();
-                estado.setNombre("Estado de Mexico");
-                estado.setPais("MX");
+                City estado= new City();
+                estado.setName("Estado de Mexico");
+                estado.setCountry("MX");
                 estado.setVisible(Boolean.TRUE);
                 service.save(estado);
                 
-                estado= new Estado();
-                estado.setNombre("Mexico Distrito Federal");
-                estado.setPais("MX");
+                estado= new City();
+                estado.setName("Mexico Distrito Federal");
+                estado.setCountry("MX");
                 estado.setVisible(Boolean.TRUE);
                 service.save(estado);
                 

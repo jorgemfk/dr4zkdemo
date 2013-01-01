@@ -39,18 +39,17 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                
-                <value>mx.test.vo.Categoria</value>               
-                <value>mx.test.vo.CategoriaMain</value>
-                <value>mx.test.vo.Usuario</value>
-                <value>mx.test.vo.Adjunto</value>
-                <value>mx.test.vo.Contacto</value>
-                <value>mx.test.vo.Contrato</value>
-                <value>mx.test.vo.Direccion</value>
-                <value>mx.test.vo.Documento</value>
-                <value>mx.test.vo.Empresa</value>
-                <value>mx.test.vo.Estado</value>
-                <value>mx.test.vo.RegistroFiscal</value>
+                <value>mx.test.vo.Category</value>               
+                <value>mx.test.vo.MainCategory</value>
+                <value>mx.test.vo.User</value>
+                <value>mx.test.vo.Attachment</value>
+                <value>mx.test.vo.Contact</value>
+                <value>mx.test.vo.Contract</value>
+                <value>mx.test.vo.Address</value>
+                <value>mx.test.vo.Document</value>
+                <value>mx.test.vo.Company</value>
+                <value>mx.test.vo.City</value>
+                <value>mx.test.vo.FiscalRegistry</value>
             </list>
         </property>
 

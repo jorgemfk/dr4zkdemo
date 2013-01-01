@@ -19,24 +19,18 @@
 * Author: Jorge Luis Martinez Ramirez
 * Email: jorgemfk1@gmail.com
 */
-package mx.dr.ml.service.util;
+package mx.dr.ml.service;
 
-import javax.servlet.ServletContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.zkoss.zk.ui.Desktop;
+import java.util.List;
+import mx.test.vo.Category;
 
 /**
  *
  * @author JLMR
  */
-public class WebServiceLocator {
-
-    public static Object getBean(Class clazz, Desktop desk){
-        return getBean(clazz,(ServletContext)desk.getWebApp().getNativeContext());
-    }
-
-    public static Object getBean(Class clazz, ServletContext context){
-        return WebApplicationContextUtils.getRequiredWebApplicationContext(context).getBean(clazz.getSimpleName());
-    }
-
+public interface ICategoryService {
+    public List findActive() throws Exception;
+    public List findAll() throws Exception;
+    public List findMainCategory() throws Exception;
+    public Category save(String value) throws Exception;
 }

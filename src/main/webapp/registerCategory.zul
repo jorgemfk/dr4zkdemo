@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+				<label value="Save Category"/>
+                 <div apply="mx.dr.forms.controller.DRGenericController">
+                    <grid width="700px" >
+                        <rows>
+                            <row >
+                                <button id="generalAction" label="Save" />
+                            </row>
+                        </rows>
+                    </grid>
+                </div>
+</zk>

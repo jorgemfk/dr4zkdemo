@@ -19,24 +19,27 @@
 * Author: Jorge Luis Martinez Ramirez
 * Email: jorgemfk1@gmail.com
 */
-package mx.dr.ml.service.util;
+package mx.dr.ml.view.facade;
 
-import javax.servlet.ServletContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import java.util.List;
+import mx.dr.forms.dto.GenericDtoParamsIN;
+import mx.dr.forms.view.component.DRListBox;
+import mx.dr.ml.service.ICityService;
+import mx.dr.ml.service.util.WebServiceLocator;
+import mx.test.vo.City;
 import org.zkoss.zk.ui.Desktop;
+import org.zkoss.zk.ui.Executions;
 
 /**
  *
  * @author JLMR
  */
-public class WebServiceLocator {
+public class CityFacade  {
 
-    public static Object getBean(Class clazz, Desktop desk){
-        return getBean(clazz,(ServletContext)desk.getWebApp().getNativeContext());
-    }
-
-    public static Object getBean(Class clazz, ServletContext context){
-        return WebApplicationContextUtils.getRequiredWebApplicationContext(context).getBean(clazz.getSimpleName());
+    public List<City> findMXCities() throws Exception {
+        Desktop desk = Executions.getCurrent().getDesktop();
+        ICityService service = (ICityService) WebServiceLocator.getBean(ICityService.class, desk);
+        return service.findMXCities();
     }
 
 }

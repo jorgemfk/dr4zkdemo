@@ -19,24 +19,22 @@
 * Author: Jorge Luis Martinez Ramirez
 * Email: jorgemfk1@gmail.com
 */
-package mx.dr.ml.service.util;
+package mx.dr.ml.service;
 
-import javax.servlet.ServletContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.zkoss.zk.ui.Desktop;
+import mx.dr.forms.dto.GenericDtoIN;
+import mx.dr.forms.dto.GenericDtoOneIN;
+import mx.test.vo.Company;
+import mx.test.vo.User;
 
 /**
  *
  * @author JLMR
  */
-public class WebServiceLocator {
+public interface ICompanyService {
 
-    public static Object getBean(Class clazz, Desktop desk){
-        return getBean(clazz,(ServletContext)desk.getWebApp().getNativeContext());
-    }
 
-    public static Object getBean(Class clazz, ServletContext context){
-        return WebApplicationContextUtils.getRequiredWebApplicationContext(context).getBean(clazz.getSimpleName());
-    }
-
+        public User companyByKey(String clave) throws Exception;
+        public void saveNewCompany(GenericDtoIN dto) throws Exception;
+        public void updateCompany(GenericDtoIN dto) throws Exception;
+        public Company companyById(GenericDtoOneIN dto) throws Exception;
 }

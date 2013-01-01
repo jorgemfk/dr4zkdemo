@@ -19,24 +19,39 @@
 * Author: Jorge Luis Martinez Ramirez
 * Email: jorgemfk1@gmail.com
 */
-package mx.dr.ml.service.util;
+package mx.dr.ml.service.impl;
 
-import javax.servlet.ServletContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.zkoss.zk.ui.Desktop;
+import java.util.List;
+import javax.annotation.Resource;
+import mx.dr.ml.dao.GenericDao;
+import mx.dr.ml.service.ICityService;
+import mx.test.vo.City;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author JLMR
  */
-public class WebServiceLocator {
+@Scope("prototype")
+@Service("ICityService")
+public class CityService implements ICityService{
+    @Resource(name="GenericDao")
+    private GenericDao dao;
 
-    public static Object getBean(Class clazz, Desktop desk){
-        return getBean(clazz,(ServletContext)desk.getWebApp().getNativeContext());
+    @Transactional
+    public List<City> findMXCities() throws Exception {
+        City estado= new City("MX");
+        return dao.findByExample(estado,0, "name");
     }
 
-    public static Object getBean(Class clazz, ServletContext context){
-        return WebApplicationContextUtils.getRequiredWebApplicationContext(context).getBean(clazz.getSimpleName());
+    public GenericDao getDao() {
+        return dao;
+    }
+
+    public void setDao(GenericDao dao) {
+        this.dao = dao;
     }
 
 }

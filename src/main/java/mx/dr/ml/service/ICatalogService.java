@@ -19,24 +19,21 @@
 * Author: Jorge Luis Martinez Ramirez
 * Email: jorgemfk1@gmail.com
 */
-package mx.dr.ml.service.util;
+package mx.dr.ml.service;
 
-import javax.servlet.ServletContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.zkoss.zk.ui.Desktop;
+import java.util.List;
+import mx.dr.forms.dto.GenericDtoIN;
+import mx.dr.forms.dto.GenericDtoOneIN;
 
 /**
  *
  * @author JLMR
  */
-public class WebServiceLocator {
-
-    public static Object getBean(Class clazz, Desktop desk){
-        return getBean(clazz,(ServletContext)desk.getWebApp().getNativeContext());
-    }
-
-    public static Object getBean(Class clazz, ServletContext context){
-        return WebApplicationContextUtils.getRequiredWebApplicationContext(context).getBean(clazz.getSimpleName());
-    }
-
+public interface ICatalogService {
+    public void save(GenericDtoIN dto) throws Exception;
+    public void save(Object o) throws Exception;
+    public Object boById(GenericDtoOneIN dto) throws Exception;
+    public Object boById(Class clazz, Object id) throws Exception;
+    public List findByExampleDTO(GenericDtoIN  dto) throws Exception;
+  
 }

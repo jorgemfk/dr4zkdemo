@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <style src="css/quienconocezkform.css"></style>
+                 <div apply="mx.dr.forms.controller.DRGenericController">
+                    <grid width="880px" >
+                        <rows>
+                            <row >
+                               <iframe id="iframe" src="contratoEmpresa.zul"  width="870px" height="100px" style="border: 1px solid gray" />
+
+                            </row>
+                            <row >
+                                <toolbarbutton id="generalAction" label=" " sclass="listo"/>
+                            </row>
+                        </rows>
+                    </grid>
+                </div>
+                
+</zk>

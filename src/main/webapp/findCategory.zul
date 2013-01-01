@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+                 
+                 <div apply="mx.dr.forms.controller.DRGenericController">
+                    <grid width="700px" >
+                        <rows>
+                            <row >
+                                <toolbarbutton id="search" label="Find"/>
+                                <toolbarbutton id="newone" label="Add" >
+                                    <attribute name="onClick">
+                                        <![CDATA[
+                                        ((org.zkoss.zul.Include) org.zkoss.zk.ui.Path.getComponent("//main/myInclude")).setSrc("/registerCategory.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=ADD");
+                                        ]]>
+                                    </attribute>    
+                                </toolbarbutton>    
+                            </row>
+                        </rows>
+                    </grid>
+                </div>
+</zk>
