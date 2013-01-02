@@ -100,6 +100,11 @@ public class CatalogService implements ICatalogService {
         return res;
     }
 
+    @Transactional
+    public List find(Class myClass, String field , Object val){
+    	return dao.find(myClass, field, val);
+    }
+    
     public GenericDao getDao() {
         return dao;
     }

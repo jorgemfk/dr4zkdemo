@@ -48,13 +48,13 @@ public class CompanyFacade {
         service.updateCompany(dto);
     }
 
-    public Company empresaById(GenericDtoOneIN dto) throws Exception {
+    public Company companyById(GenericDtoOneIN dto) throws Exception {
         ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
         return service.companyById(dto);
     }
 
 
-    public boolean usuarioByClave(String clave) throws Exception {
+    public boolean companyByKey(String clave) throws Exception {
         ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
         return service.companyByKey(clave)==null;
     }

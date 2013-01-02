@@ -1,11 +1,27 @@
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
+	<zscript>
+	<![CDATA[
+	 String dtoClassName = org.zkoss.zk.ui.Executions.getCurrent().getParameter("dto_class") == null ? (String) org.zkoss.zk.ui.Executions.getCurrent().getArg().get("dto_class") : org.zkoss.zk.ui.Executions.getCurrent().getParameter("dto_class");
+	 ]]>
+	</zscript>
 	<div apply="mx.dr.forms.controller.DRGenericController">
-		<style src="../../css/quienconocezkform.css"></style>
 		<grid width="700px">
 			<rows>
 				<row>
-					<button id="search" label="${c:l('catalogo.buscar')}" sclass="btnzul" />
+					<button id="search" label="${c:l('catalogo.buscar')}"  />
+					<button id="newone" label="Add" >
+                                    <attribute name="onClick">
+                                        <![CDATA[
+                                         if(dtoClassName.equals("mx.test.dr4zkdemo.view.model.RegisterCategory")){        
+                                             ((org.zkoss.zul.Include) org.zkoss.zk.ui.Path.getComponent("//main/myInclude")).setSrc("/registerCategory.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=ADD");
+                                         }else if(dtoClassName.equals("mx.test.dr4zkdemo.view.model.SearchCompanyMain")){
+                                        	 ((org.zkoss.zul.Include) org.zkoss.zk.ui.Path.getComponent("//main/myInclude")).setSrc("/registerCompany.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCompanyMain&action=ADD");
+                                              
+                                         }
+                                        ]]>
+                                    </attribute>    
+                    </button> 
 				</row>
 			</rows>
 		</grid>

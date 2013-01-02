@@ -49,8 +49,8 @@ public class RegisterCompany extends Base {
 
     @DRValidateNotEmpty
     @DRField(actions= FormActions.ADD,label=@DRLabel(key="registro.reg.giro"),order=0)
-    @DRComboBox(model="mx.dr.ml.view.facade.CategoriaFacade@findActive",
-    action="mx.dr.ml.view.facade.CategoriaFacade@save")
+    @DRComboBox(model="mx.dr.ml.view.facade.CategoryFacade@findActive",
+    action="mx.dr.ml.view.facade.CategoryFacade@save")
     private Category category;
 
     @DRValidateNotEmpty

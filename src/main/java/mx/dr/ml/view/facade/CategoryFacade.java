@@ -56,13 +56,20 @@ public class CategoryFacade {
         return service.save(value);
     }
     
-    public boolean validateXName(String nombre) throws Exception{
-        GenericDtoIN  dto= new GenericDtoIN();
-        RegisterCategory vdto=new RegisterCategory();
-        System.out.println(nombre);
-        vdto.setName(nombre);
-        dto.setViewDTO(vdto);
+    public boolean validateXName(RegisterCategory value) throws Exception{
         ICatalogService service = (ICatalogService) WebServiceLocator.getBean(ICatalogService.class, Executions.getCurrent().getDesktop());
-        return service.findByExampleDTO(dto).isEmpty();
+        List<Category> result=service.find(Category.class, "name", value.getName());
+        if(result.isEmpty()){
+        	return true;
+        }
+        if(value.getId()==null){
+        	return false;
+        }
+        for(Category cat: result){
+        	if( value.getId().intValue() != cat.getId()){
+        		return false;
+        	}
+        }
+        return true;
     }
 }

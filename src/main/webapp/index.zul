@@ -5,12 +5,17 @@
         <toolbarbutton label="Category">
         	<attribute name="onClick">
               <![CDATA[
-                 myInclude.setSrc("/adminCategory.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=ADD");
+                 myInclude.setSrc("/genericFind.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=SEARCH");
               ]]>
             </attribute>
         </toolbarbutton>
-        <toolbarbutton label="Company"/>
-        
+        <toolbarbutton label="Company">
+        	<attribute name="onClick">
+              <![CDATA[
+                 myInclude.setSrc("/genericFind.zul?dto_class=mx.test.dr4zkdemo.view.model.SearchCompanyMain&action=SEARCH");
+              ]]>
+            </attribute>
+        </toolbarbutton>
     </toolbar>
     	<include id="myInclude"/>
 </zk>

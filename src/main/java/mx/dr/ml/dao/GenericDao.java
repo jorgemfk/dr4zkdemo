@@ -107,6 +107,12 @@ public class GenericDao extends HibernateTemplate implements Serializable {
     public Object findUniqueByExampleDTO(Object vo) throws Exception {
         return (Object) criteriaByExample(vo, true, 0, true).uniqueResult();
     }
+    
+    public List find(Class myClass, String field , Object val){
+    	Criteria c = currentSession().createCriteria(myClass);
+    	c.add(Restrictions.eq(field, val));
+    	return c.list();
+    }
 
     /**
      * Metodo principal para la generacion del criteria dinamico

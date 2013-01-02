@@ -6,11 +6,11 @@
                     <grid width="880px" >
                         <rows>
                             <row >
-                               <iframe id="iframe" src="contratoEmpresa.zul"  width="870px" height="100px" style="border: 1px solid gray" />
+                               <iframe id="iframe" src="companyContract.zul"  width="870px" height="100px" style="border: 1px solid gray" />
 
                             </row>
                             <row >
-                                <toolbarbutton id="generalAction" label=" " sclass="listo"/>
+                                <button id="generalAction" label="Save" />
                             </row>
                         </rows>
                     </grid>

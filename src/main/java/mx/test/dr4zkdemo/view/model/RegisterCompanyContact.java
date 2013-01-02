@@ -40,7 +40,7 @@ public class RegisterCompanyContact {
     
     @DRValidateStringPattern(pattern=".+@.+.[a-z]+")
     @DRValidateNotEmpty
-    @DRValidateBusinessResult(action="mx.dr.ml.view.facade.UsuarioFacade@usuarioByClave")
+    @DRValidateBusinessResult(action="mx.dr.ml.view.facade.CompanyFacade@companyByKey")
     @DRField(actions= FormActions.ADD, label =
     @DRLabel(key = "registro.email"), order = 3)
     @DRTextBox(maxlenght=49)
