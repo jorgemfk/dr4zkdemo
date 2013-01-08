@@ -24,6 +24,7 @@ package mx.test.dr4zkdemo.view.model;
 import mx.dr.forms.constants.FormActions;
 import mx.dr.forms.view.DRField;
 import mx.dr.forms.view.component.*;
+import mx.dr.forms.view.validable.DRValidateCaptcha;
 import mx.dr.forms.view.validable.DRValidateNotEmpty;
 import mx.test.vo.City;
 
@@ -35,24 +36,29 @@ import mx.test.vo.City;
 public class RegisterCompanyAddress {
 
 @DRValidateNotEmpty
-    @DRField(actions= {FormActions.ADD, FormActions.EDIT },label=@DRLabel(key="registro.calle"),order=5)
-@DRTextBox(maxlenght=299)
+    @DRField(actions= {FormActions.ADD, FormActions.EDIT },label=@DRLabel(key="registro.calle"),order=1)
+@DRTextBox(rows=5,maxlenght=299)
 private String address$street;
 
 
 @DRValidateNotEmpty
-    @DRField(actions= {FormActions.ADD, FormActions.EDIT },label=@DRLabel(key="registro.estado"),order=5)
+    @DRField(actions= {FormActions.ADD, FormActions.EDIT },label=@DRLabel(key="registro.estado"),order=2)
 @DRListBox(mold=DRListBox.MOLD.SELECT, itemRenderer=mx.dr.forms.zul.DRResultsListSimpleRender.class
 ,model="mx.dr.ml.view.facade.CityFacade@findMXCities")
 private City address$city;
 
 @DRValidateNotEmpty
-    @DRField(actions= {FormActions.EDIT },label=@DRLabel(key="registro.latitud"),order=5)
+    @DRField(actions= {FormActions.ADD, FormActions.EDIT },label=@DRLabel(key="registro.latitud"),order=3)
 @DRDecimalBox(format="#.000000")
 private Double address$latitude;
 
 @DRValidateNotEmpty
-    @DRField(actions= {FormActions.EDIT },label=@DRLabel(key="registro.longitud"),order=5)
+    @DRField(actions= {FormActions.ADD, FormActions.EDIT },label=@DRLabel(key="registro.longitud"),order=4)
 @DRDecimalBox(format="#.000000")
 private Double address$longitude;
+
+@DRField(actions= {FormActions.ADD },label=@DRLabel(key=DRLabel.NO_LABEL),order=5)
+@DRValidateCaptcha
+@DRCaptcha
+private String strcaptcha;
 }

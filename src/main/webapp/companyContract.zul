@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
                  <div apply="mx.dr.forms.controller.DRGenericController">
-                     <div id="contratoEmpresa"/>
+                     <div id="contractCompany"/>
                  </div>
 </zk>

@@ -105,6 +105,12 @@ public class CatalogService implements ICatalogService {
     	return dao.find(myClass, field, val);
     }
     
+    @Transactional
+    public List findByExampleDesc(Object vo, int limit, String... order) throws Exception{
+
+        return  dao.findByExampleDesc(vo, limit, order);
+    }
+    
     public GenericDao getDao() {
         return dao;
     }

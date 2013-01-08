@@ -24,6 +24,7 @@ package mx.test.dr4zkdemo.view.model;
 import java.util.List;
 import mx.dr.forms.constants.FormActions;
 import mx.dr.forms.view.component.DRAttachList;
+import mx.dr.forms.view.component.DRFCKEditor;
 import mx.dr.forms.view.component.DRGrid;
 import mx.dr.forms.view.component.DRTextBox;
 import mx.dr.forms.view.component.DRLabel;
@@ -55,13 +56,14 @@ public class RegisterCompany extends Base {
 
     @DRValidateNotEmpty
     @DRField(actions= FormActions.ADD,label=@DRLabel(key="registro.bio"),order=1)
-    @DRTextBox(rows=8,maxlenght=499)
+    @DRFCKEditor(width="300px", height="300px")
     private String bio;
 
     @DRValidateNotEmpty
     @DRField(actions= FormActions.ADD,label=@DRLabel(key="registro.telefono"),order=4)
-    @DRTextBox(maxlenght=20, mask="(9999) 9999-9999")
-    private String telefono;
+    //mask need to include jquery mask in zul
+    @DRTextBox(maxlenght=20/*, mask="(9999) 9999-9999"*/)
+    private String phone;
 
     @DRValidateNotEmpty
     @DRField(actions= FormActions.ADD,label=@DRLabel(key="registro.reg.logo"),order=4)

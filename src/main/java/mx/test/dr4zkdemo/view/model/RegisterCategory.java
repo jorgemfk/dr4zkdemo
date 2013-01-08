@@ -47,7 +47,7 @@ import mx.dr.util.Base;
 		@DRFellowLink(action=FormActions.LIST, param="id",fellow=FellowType.SELF,componentPath="//main/myInclude",listLabel=@DRLabel(key="catalogo.editar"),url="/registerCategory.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=EDIT"),
 		@DRFellowLink(action=FormActions.ADD, fellow=FellowType.SELF,componentPath="//main/myInclude",url="/genericFind.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=SEARCH",submitAction="mx.dr.ml.view.facade.CatalogFacade@save",sucessMessage=@DRMessage(label=@DRLabel(key="anuncio.msg.alta"))),
 		@DRFellowLink(action=FormActions.EDIT, fellow=FellowType.SELF,componentPath="//main/myInclude",url="/genericFind.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=SEARCH",submitAction="mx.dr.ml.view.facade.CatalogFacade@save", sucessMessage=@DRMessage(label=@DRLabel(key="anuncio.msg.update")), param="id", paramAction="mx.dr.ml.view.facade.CatalogFacade@boById"),
-		@DRFellowLink(action=FormActions.SEARCH, submitAction="mx.dr.ml.view.facade.CatalogFacade@findByExampleDTO", resultsComponent=@DRListBox(header=true,id="resultado_categorias",itemRenderer=mx.dr.forms.zul.DRResultsListRender.class, dtoResult=RegisterCategory.class))})
+		@DRFellowLink(action=FormActions.SEARCH, submitAction="mx.dr.ml.view.facade.CatalogFacade@findByExampleDTO",loadOnInit=true, resultsComponent=@DRListBox(header=true,id="resultado_categorias",itemRenderer=mx.dr.forms.zul.DRResultsListRender.class, dtoResult=RegisterCategory.class))})
 @DRGrid(id="comregGrid",width="700px")
 @DRRootEntity(entity=mx.test.vo.Category.class)
 public class RegisterCategory extends Base{

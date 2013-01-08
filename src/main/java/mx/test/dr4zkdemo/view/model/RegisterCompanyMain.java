@@ -34,7 +34,7 @@ import mx.dr.forms.view.component.DRLabel;
  * @author jorge
  */
 
-@DRFellowLink(action= FormActions.ADD,fellow=FellowType.NEW,componentPath="//main/ctab",url="/registrarSucess.jsp",submitAction="mx.dr.ml.view.facade.CompanyFacade@saveNewEmpresa")
+@DRFellowLink(action= FormActions.ADD,fellow=FellowType.NEW,componentPath="//main/ctab",url="/genericFind.zul?dto_class=mx.test.dr4zkdemo.view.model.SearchCompanyMain&action=SEARCH",submitAction="mx.dr.ml.view.facade.CompanyFacade@saveNewCompany")
 @DRRootEntity(entity=mx.test.vo.Company.class)
 public class RegisterCompanyMain {
 
@@ -47,7 +47,7 @@ public class RegisterCompanyMain {
     private RegisterCompany company;
 
     @DRField(actions= FormActions.ADD,isField=false, label=@DRLabel(key="registro.reg.comensal"))
-    @DRGroupBox(mold=DRGroupBox.MOLD._3D, label=@DRLabel(key="registro.reg.contacto"),width="900px")
+    @DRGroupBox(mold=DRGroupBox.MOLD._3D, label=@DRLabel(key="registro.reg.contacto"),width="900px")  
     private RegisterCompanyContact contact;
 
     public RegisterCompany getCompany() {

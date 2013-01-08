@@ -25,6 +25,8 @@ import mx.dr.forms.dto.GenericDtoIN;
 import mx.dr.forms.dto.GenericDtoOneIN;
 import mx.dr.ml.service.ICompanyService;
 import mx.dr.ml.service.util.WebServiceLocator;
+import mx.test.dr4zkdemo.view.model.RegisterCompanyContact;
+import mx.test.dr4zkdemo.view.model.RegisterCompanyMain;
 import mx.test.vo.Company;
 import mx.test.vo.User;
 import org.zkoss.zk.ui.Executions;
@@ -37,13 +39,13 @@ public class CompanyFacade {
 
 
 
-    public void saveNewEmpresa(GenericDtoIN dto) throws Exception {
+    public void saveNewCompany(GenericDtoIN dto) throws Exception {
         ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
         service.saveNewCompany(dto);
     }
 
 
-    public void updateEmpresa(GenericDtoIN dto) throws Exception {
+    public void updateCompany(GenericDtoIN dto) throws Exception {
         ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
         service.updateCompany(dto);
     }
@@ -54,9 +56,9 @@ public class CompanyFacade {
     }
 
 
-    public boolean companyByKey(String clave) throws Exception {
+    public boolean companyByKey(RegisterCompanyContact dto) throws Exception {
         ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
-        return service.companyByKey(clave)==null;
+        return service.companyByKey(dto.getKey())==null;
     }
 
 }

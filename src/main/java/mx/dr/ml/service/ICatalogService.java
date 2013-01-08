@@ -36,5 +36,6 @@ public interface ICatalogService {
     public Object boById(Class clazz, Object id) throws Exception;
     public List findByExampleDTO(GenericDtoIN  dto) throws Exception;
     public List find(Class myClass, String field , Object val) throws Exception;
+    public List<? extends Object> findByExampleDesc(Object vo, int limit, String... order) throws Exception;
         
 }

@@ -35,7 +35,7 @@ import mx.dr.forms.view.validable.DRValidateStringPattern;
  *
  * @author jorge
  */
-@DRGrid(id = "empconregGrid", width = "850px")
+@DRGrid(id = "empconregGrid", width = "850px", cols=4)
 public class RegisterCompanyContact {
     
     @DRValidateStringPattern(pattern=".+@.+.[a-z]+")
@@ -62,7 +62,8 @@ public class RegisterCompanyContact {
     @DRValidateNotEmpty
     @DRField(actions= {FormActions.ADD, FormActions.EDIT },label =
     @DRLabel(key = "registro.telefono.contacto"), order = 2)
-    @DRTextBox(maxlenght=20, mask="(9999) 9999-9999")
+  //mask need to include jquery mask in zul
+    @DRTextBox(maxlenght=20/*, mask="(9999) 9999-9999"*/)
     private String contact$phone_number;
 
     public String getKey() {

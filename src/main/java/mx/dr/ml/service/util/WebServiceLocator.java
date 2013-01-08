@@ -31,12 +31,12 @@ import org.zkoss.zk.ui.Desktop;
  */
 public class WebServiceLocator {
 
-    public static Object getBean(Class clazz, Desktop desk){
+    public static <T extends Object>T getBean(Class clazz, Desktop desk){
         return getBean(clazz,(ServletContext)desk.getWebApp().getNativeContext());
     }
 
-    public static Object getBean(Class clazz, ServletContext context){
-        return WebApplicationContextUtils.getRequiredWebApplicationContext(context).getBean(clazz.getSimpleName());
+    public static <T extends Object>T getBean(Class clazz, ServletContext context){
+        return (T)WebApplicationContextUtils.getRequiredWebApplicationContext(context).getBean(clazz.getSimpleName());
     }
 
 }

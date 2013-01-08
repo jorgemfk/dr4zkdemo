@@ -31,6 +31,7 @@ import mx.dr.ml.service.ICatalogService;
 import mx.dr.ml.service.util.WebServiceLocator;
 import mx.test.vo.CatalogStatus;
 import mx.test.vo.Category;
+import mx.test.vo.Contract;
 import mx.test.vo.MainCategory;
 import mx.test.vo.City;
 
@@ -93,7 +94,10 @@ public class InitListener implements ServletContextListener {
                 estado.setVisible(Boolean.TRUE);
                 service.save(estado);
                 
-                        
+                Contract contract = new Contract();
+                contract.setType("E");
+                contract.setContent("USER CONTRACT HERE...");
+                service.save(contract);    
             } catch (Exception ex) {
                 ex.printStackTrace();
                 Logger.getLogger(InitListener.class.getName()).log(Level.SEVERE, null, ex);
