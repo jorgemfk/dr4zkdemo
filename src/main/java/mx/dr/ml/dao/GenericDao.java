@@ -97,6 +97,7 @@ public class GenericDao extends HibernateTemplate implements Serializable {
     }
 
     public List findByExampleDTO(Object vo, int limit, String... order) throws Exception {
+    	System.out.println("vo:"+vo);
         return criteriaByExample(vo, true, limit, true, order).list();
     }
 
@@ -122,6 +123,8 @@ public class GenericDao extends HibernateTemplate implements Serializable {
     protected Criteria criteriaByExample(Object vo, boolean isDto, int limit, boolean isAsc, String... order) throws  Exception{
         Class myClass = null;
         if (isDto) {
+        	System.out.println(vo);
+        	System.out.println(vo.getClass().getAnnotation(DRRootEntity.class));
             DRRootEntity drRootEntity = vo.getClass().getAnnotation(DRRootEntity.class);
             myClass = drRootEntity.entity();
         } else {

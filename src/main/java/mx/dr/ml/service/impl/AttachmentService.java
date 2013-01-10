@@ -48,7 +48,7 @@ public class AttachmentService implements IAttachmentService {
 
     @Transactional
     public Long saveMedia(Media media, Attachment adjunto) throws Exception {
-        String res = "/mailConfig.properties";
+        String res = "/empty.properties";
         Document doc = new Document();
         doc.setDataContent(media.getByteData());
         dao.save(doc);
@@ -60,7 +60,7 @@ public class AttachmentService implements IAttachmentService {
 
      @Transactional
      public void writeTempFiles() throws Exception{
-         String res = "/mailConfig.properties";
+         String res = "/empty.properties";
          List<Attachment> ids = dao.find("from Attachment");
          Document doc;
          for(Attachment adjunto :ids){

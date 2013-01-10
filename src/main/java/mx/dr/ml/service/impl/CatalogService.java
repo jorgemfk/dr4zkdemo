@@ -95,6 +95,7 @@ public class CatalogService implements ICatalogService {
 
     @Transactional
     public List findByExampleDTO(GenericDtoIN dto) throws Exception {
+    	System.out.println("dto:"+dto.getViewDTO());
         List res = dao.findByExampleDTO(dto.getViewDTO(), 0);
         System.out.println(res);
         return res;

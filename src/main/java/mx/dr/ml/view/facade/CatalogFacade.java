@@ -54,6 +54,7 @@ public class CatalogFacade {
         return (T)service.boById(clazz, id);
     }
     public List findByExampleDTO(GenericDtoIN  dto) throws Exception{
+    	System.out.println("fac: "+ dto.getViewDTO());   	
         ICatalogService service = (ICatalogService) WebServiceLocator.getBean(ICatalogService.class, Executions.getCurrent().getDesktop());
         return service.findByExampleDTO(dto);
     }

@@ -26,6 +26,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
@@ -40,6 +41,7 @@ public class Document {
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name="data_content")
+    @Lob
     private byte[] dataContent;
 
     public byte[] getDataContent() {
