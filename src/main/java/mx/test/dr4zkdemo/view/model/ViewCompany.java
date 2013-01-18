@@ -28,6 +28,7 @@ import mx.dr.forms.view.DRField;
 import mx.dr.forms.view.DRModel;
 import mx.dr.forms.view.DRRootEntity;
 import mx.dr.forms.view.component.DRGmaps;
+import mx.dr.forms.view.component.DRHtml;
 import mx.dr.forms.view.component.DRImage;
 import mx.dr.forms.view.component.DRLabel;
 
@@ -53,7 +54,7 @@ public class ViewCompany {
 
     @DRField(actions= FormActions.READ, readParent = "imgPerfil", label =
     @DRLabel(key = DRLabel.NO_LABEL))
-    @DRImage(width = "100px", prepend = "../..")
+    @DRImage(width = "100px", prepend = ".")
     private String logo$uri;
     
     @DRField(actions= FormActions.READ, readParent = "giro", label =
@@ -68,7 +69,7 @@ public class ViewCompany {
 
     @DRField(actions= FormActions.READ, readParent = "bioRow", label =
     @DRLabel(key = DRLabel.NO_LABEL))
-    @DRLabel(key = DRLabel.NO_LABEL,sclass="bio")
+    @DRHtml()
     private String bio;
 
     @DRField(actions= FormActions.READ, readParent = "especialidad", label =
@@ -96,16 +97,16 @@ public class ViewCompany {
 
     @DRField(actions= FormActions.READ, readParent = "mapRow", label =
     @DRLabel(key = DRLabel.NO_LABEL))
-    @DRGmaps(showLargeCtrl=true, width = "450px", height = "450px", latitude = "latitude", longitude = "longitude", gmarkContent="marca")
+    @DRGmaps(showLargeCtrl=true, width = "450px", height = "450px", latitude = "address$latitude", longitude = "address$longitude", gmarkContent="brand")
     private Double address$latitude;
     private Double address$longitude;
-
+/*
     @DRField(actions= FormActions.READ, readParent="fotosD", label =
     @DRLabel(key = DRLabel.NO_LABEL))
     @DRImage(width = "150px", prepend = "../..",rotate=false,minimages=6,nullimage="/temp/0.png")
     @DRModel(model="mx.dr.ml.view.facade.CompanyFacade@requestPhotosEmpresa", modelParams={"id"})
     private List photos;
-
+*/
     public Double getAddress$latitude() {
         return address$latitude;
     }

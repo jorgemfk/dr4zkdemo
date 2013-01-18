@@ -26,10 +26,12 @@ import mx.dr.forms.constants.FormActions;
 import mx.dr.forms.view.component.DRAttachList;
 import mx.dr.forms.view.component.DRFCKEditor;
 import mx.dr.forms.view.component.DRGrid;
+import mx.dr.forms.view.component.DRIntBox;
 import mx.dr.forms.view.component.DRTextBox;
 import mx.dr.forms.view.component.DRLabel;
 import mx.dr.forms.dto.DRMedia;
 import mx.dr.forms.view.DRField;
+import mx.dr.forms.view.DRIsMedia;
 import mx.dr.forms.view.component.DRComboBox;
 import mx.dr.forms.view.validable.DRValidateNotEmpty;
 import mx.dr.util.Base;
@@ -39,7 +41,7 @@ import mx.test.vo.Category;
  *
  * @author jorge
  */
-@DRGrid(id="empregGrid",width="850px")
+@DRGrid(id="empregGrid",width="880px")
 public class RegisterCompany extends Base {
 
     
@@ -56,18 +58,18 @@ public class RegisterCompany extends Base {
 
     @DRValidateNotEmpty
     @DRField(actions= FormActions.ADD,label=@DRLabel(key="registro.bio"),order=1)
-    @DRFCKEditor(width="300px", height="300px")
+    @DRFCKEditor(width="440px", height="440px")
     private String bio;
 
-    @DRValidateNotEmpty
     @DRField(actions= FormActions.ADD,label=@DRLabel(key="registro.telefono"),order=4)
-    //mask need to include jquery mask in zul
-    @DRTextBox(maxlenght=20/*, mask="(9999) 9999-9999"*/)
-    private String phone;
+    //mask need to include jquery mask in zul and must change to drtextbox
+    @DRIntBox(maxlenght=9/*, mask="(9999) 9999-9999"*/)
+    private Integer phone;
 
     @DRValidateNotEmpty
     @DRField(actions= FormActions.ADD,label=@DRLabel(key="registro.reg.logo"),order=4)
     @DRAttachList(maxRow=1)
+    @DRIsMedia
     private List<DRMedia> media;
 
     

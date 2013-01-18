@@ -42,7 +42,7 @@ public class EditCompany extends Base {
     @DRValidateNotEmpty
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.marca"),order=1)
     @DRTextBox(maxlenght=100, uppercase=true)
-    private String marca;
+    private String brand;
 
     @DRValidateNotEmpty
     @DRField(actions= FormActions.EDIT, label=@DRLabel(key="registro.reg.giro"),order=0)
@@ -50,8 +50,8 @@ public class EditCompany extends Base {
     private Category category;
 
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.telefono"),order=4)
-    @DRTextBox(maxlenght=99)
-    private String phone;
+    @DRIntBox(maxlenght=9)
+    private Integer phone;
 
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.slogan"),order=4)
     @DRTextBox(maxlenght=199)
@@ -76,7 +76,7 @@ public class EditCompany extends Base {
     private CatalogStatus estatusEnum;
 
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.bio"),order=1)
-    @DRTextBox(rows=8,maxlenght=499,cols=38)
+    @DRFCKEditor(width="350px", height="350px")
     private String bio;
 
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.link"),order=1)

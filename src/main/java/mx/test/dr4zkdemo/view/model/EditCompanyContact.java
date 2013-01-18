@@ -56,12 +56,12 @@ public class EditCompanyContact {
     private String contact$name;
 
 
-    @DRValidateNotEmpty
+
     @DRField(actions= FormActions.EDIT,label =
     @DRLabel(key = "registro.telefono.contacto"), order = 2)
-    //mask need to include jquery mask in zul
-    @DRTextBox(maxlenght=19/*, mask="(9999) 9999-9999"*/)
-    private String contact$phone_number;
+    //mask need to include jquery mask in zul and must change to drtextbox
+    @DRIntBox(maxlenght=9/*, mask="(9999) 9999-9999"*/)
+    private Integer contact$phone_number;
 
     public String getKey() {
         return key;

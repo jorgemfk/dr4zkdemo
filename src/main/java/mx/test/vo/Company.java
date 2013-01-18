@@ -74,7 +74,7 @@ public class Company extends User {
     @JoinColumn(name = "idattachment")
     private Attachment logo;
 
-    private String phone;
+    private Integer phone;
 
     private String slogan;
     private String specialty;
@@ -117,11 +117,11 @@ public class Company extends User {
         this.fiscalRegistry = registroFiscal;
     }
 
-    public String getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(String telefono) {
+    public void setPhone(Integer telefono) {
         this.phone = telefono;
     }
 

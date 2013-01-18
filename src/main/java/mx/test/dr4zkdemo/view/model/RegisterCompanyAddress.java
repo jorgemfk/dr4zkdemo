@@ -35,7 +35,6 @@ import mx.test.vo.City;
 @DRGrid(id="empdirregGrid",width="850px")
 public class RegisterCompanyAddress {
 
-@DRValidateNotEmpty
     @DRField(actions= {FormActions.ADD, FormActions.EDIT },label=@DRLabel(key="registro.calle"),order=1)
 @DRTextBox(rows=5,maxlenght=299)
 private String address$street;

@@ -57,6 +57,6 @@ public class RegisteCompanyFiscal {
     private String fiscalRegistry$fiscalAddress$cp;
     @DRField(actions= FormActions.EDIT,label =
     @DRLabel(key = "registro.estado"), order = 5)
-    @DRListBox(mold = DRListBox.MOLD.SELECT, itemRenderer = mx.dr.forms.zul.DRResultsListSimpleRender.class, model = "mx.dr.ml.view.facade.EstadoFacade@findMXEstados")
+    @DRListBox(mold = DRListBox.MOLD.SELECT, itemRenderer = mx.dr.forms.zul.DRResultsListSimpleRender.class, model = "mx.dr.ml.view.facade.CityFacade@findMXCities")
     private City fiscalRegistry$fiscalAddress$city;
 }

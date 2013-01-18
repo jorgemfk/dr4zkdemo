@@ -38,9 +38,9 @@ private Integer id;
 
 private String name;
 
-private String phone_number;
+private Integer phone_number;
 
-private String phone_number_two;
+private Integer phone_number_two;
 
 private String mobile;
 
@@ -72,18 +72,18 @@ public void setName(String nombre) {
 }
 
 @Column(name = "telefono_uno", nullable = false)
-public String getPhone_number() {
+public Integer getPhone_number() {
 	return phone_number;
 }
-public void setPhone_number(String telefono_uno) {
+public void setPhone_number(Integer telefono_uno) {
 	this.phone_number = telefono_uno;
 }
 
 @Column(name = "telefono_dos", nullable = true)
-public String getPhone_number_two() {
+public Integer getPhone_number_two() {
 	return phone_number_two;
 }
-public void setPhone_number_two(String telefono_dos) {
+public void setPhone_number_two(Integer telefono_dos) {
 	this.phone_number_two = telefono_dos;
 }
 

@@ -1,0 +1,25 @@
+a.btndeletee {
+background-image:url(../img/cross.png);background-repeat:no-repeat;width: 57px; height: 57px;display: block;
+}
+
+a.btnverde:hover {
+font-family:Arial, Helvetica, sans-serif;
+        font-size:22px;
+        text-decoration:none;
+        color:#000;
+	text-align:left;
+	vertical-align:middle;
+        padding: 16px 0px 10px 20px;
+        position: relative;
+}
+a.btnverde {
+font-family:Arial, Helvetica, sans-serif;
+        font-size:22px;
+        font-weight:bold;
+        text-decoration:none;
+        color:#000;
+	text-align:left;
+	vertical-align:middle;
+        padding: 16px 0px 10px 20px;
+        position: relative;
+}

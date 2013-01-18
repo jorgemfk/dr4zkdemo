@@ -41,7 +41,8 @@ import mx.dr.util.Base;
  */
 @DRActions(actions={
 @DRFellowLink(action= FormActions.SEARCH, submitAction="mx.dr.ml.view.facade.CatalogFacade@findByExampleDTO", resultsComponent=@DRListBox(header=true,id="resultado_empresas",itemRenderer=mx.dr.forms.zul.DRResultsListRender.class, dtoResult=SearchCompanyMain.class))
-, @DRFellowLink(action= FormActions.LIST, param="id",fellow=FellowType.POPUP,componentPath="//main/myInclude",listLabel=@DRLabel(key="catalogo.editar"),url="/editCompany.zul?dto_class=mx.dr.ml.view.dto.empresa.EditCompanyMain&action=EDIT")
+, @DRFellowLink(action= FormActions.LIST, param="id",fellow=FellowType.POPUP,listLabel=@DRLabel(key="catalogo.editar"),url="/editCompany.zul?dto_class=mx.test.dr4zkdemo.view.model.EditCompanyMain&action=EDIT")
+, @DRFellowLink(action= FormActions.LIST, param="id",fellow=FellowType.NEW,listLabel=@DRLabel(key="catalogo.ver"),url="/viewCompany.zul?dto_class=mx.test.dr4zkdemo.view.model.ViewCompany&action=READ")
 })
 @DRGrid(id="emregGrid",width="700px")
 @DRRootEntity(entity=mx.test.vo.Company.class)

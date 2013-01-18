@@ -24,6 +24,7 @@ package mx.test.dr4zkdemo.view.model;
 import mx.dr.forms.constants.FormActions;
 import mx.dr.forms.view.DRField;
 import mx.dr.forms.view.component.DRGrid;
+import mx.dr.forms.view.component.DRIntBox;
 import mx.dr.forms.view.component.DRLabel;
 import mx.dr.forms.view.component.DRTextBox;
 import mx.dr.forms.view.validable.DRValidateBusinessResult;
@@ -59,12 +60,12 @@ public class RegisterCompanyContact {
     @DRTextBox(maxlenght=199)
     private String contact$name;
 
-    @DRValidateNotEmpty
+
     @DRField(actions= {FormActions.ADD, FormActions.EDIT },label =
     @DRLabel(key = "registro.telefono.contacto"), order = 2)
-  //mask need to include jquery mask in zul
-    @DRTextBox(maxlenght=20/*, mask="(9999) 9999-9999"*/)
-    private String contact$phone_number;
+  //mask need to include jquery mask in zul and must change to drtextbox
+    @DRIntBox(maxlenght=9/*, mask="(9999) 9999-9999"*/)
+    private Integer contact$phone_number;
 
     public String getKey() {
         return key;
