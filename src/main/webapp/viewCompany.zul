@@ -2,147 +2,103 @@
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <zk xmlns="http://www.zkoss.org/2005/zul" xmlns:html="http://www.w3.org/1999/xhtml">
 
- 
-    <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyCzdxFh2EH9_HxsnRZOQkIaSe-lCjVQPLQ"/>
-    
-    <div  apply="mx.dr.forms.controller.DRGenericController" width="100%">
+	<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyCzdxFh2EH9_HxsnRZOQkIaSe-lCjVQPLQ" />
+	<div apply="mx.dr.forms.controller.DRGenericController" width="100%">
+		<div align="center">
+			<div id="nombreRow"></div>
+			<div id="bioRow" style="margin: 10px 10px 10px 10px;"></div>
+		</div>
 
-        <div sclass="upper" align="center">
-            <div sclass="uppercontent">
-                <div id="nombreRow" sclass="uptitulo">
-                </div>
-                <div sclass="upcuadrocontenido">
-                    <div sclass="upperanuncios">
+		<div style="background-color:#edf6e8;" align="left"
+			width="980px">
+			<grid width="980px">
+				<rows>
+					<row style="vertical-align: top">
+						<panel width="460px" style="vertical-align: top">
+							<panelchildren>
+								<div>
+									<grid>
+										<rows>
+											<row>
+												<div id="imgPerfil">
+												</div>
+												<div>
+													<panel>
+														<panelchildren
+															style="padding: 5px">
+															<div
+																style="padding: 10px">
+																<div
+																	id="estadoRow" style="font-weight: bolder;">
+																</div>
+																<div
+																	id="calleRow">
+																</div>
+																<div
+																	id="coloniaRow">
+																</div>
+																<div
+																	id="municipioRow">
+																</div>
 
+															</div>
+														</panelchildren>
+													</panel>
 
-                        <div id="bioRow" style="margin: 10px 10px 10px 10px;"  >
-                        </div>
+												</div>
+											</row>
+										</rows>
+									</grid>
 
-                    </div>
-                </div>
-                <div id="fotosD" style="padding: 10px"></div>
-            </div>
+								</div>
+								<div style="padding:10px"
+									align="center">
+									<div>
+										<div>
+											<div id="sloganRow"
+												style="margin: 10px 10px 10px 10px;">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="mapRow"></div>
+							</panelchildren>
+						</panel>
 
-        </div>
-        <div sclass="upbar">
-            <div sclass="upbardummy"/>
-        </div>
-        <zscript>
-         <![CDATA[
-  
-   boolean cualified=session.getAttribute ("idv") != null;
-   System.out.println("cuakid: "+ cualified);
-   ]]>
-        </zscript>
+						<panel width="460px">
+							<panelchildren>
+								<div style="padding: 10px">
+									<label value="Category"></label>
+								</div>
 
-        <div  style="background-color:#edf6e8;" align="left" width="980px">
-            <grid width="980px">
-                <rows>
-                    <row style="vertical-align: top">
-                        <panel width="460px"  style="vertical-align: top">
-                            <panelchildren>
-                                <div>
-                                    <grid>
-                                        <rows>
-                                            <row>
-                                                <div id="imgPerfil" > </div>
-                                                <div>
-                                                    <panel>
-                                                        <panelchildren style="padding: 5px">
-                                                            <div style="padding: 10px">
-                                                             <label value="Amigos que lo conocen" sclass="semititulo"></label>
-                                                            </div> 
-                                        <!--label value="${c:l('anuncio.quienes')}"/-->
-                                                            <div id="whoaredare">
-                                                            </div>
-                                                        </panelchildren>
-                                                    </panel>
+								<div>
+									<panel>
+										<panelchildren>
+											<div
+												style="padding: 10px">
+												<div id="giro"
+													style="font-weight: bolder">
+												</div>
+												<div id="especialidad">
+												</div>
+											</div>
+											<div id="telefonoRow"></div>
+											<button id="returned" label="Return">
+												<attribute name="onClick">
+                                        			<![CDATA[ org.zkoss.zk.ui.Executions.sendRedirect("/"); ]]>
+                                                </attribute>
+											</button>
+										</panelchildren>
+									</panel>
+								</div>
 
-                                                </div>
-                                            </row>
-                                        </rows>
-                                    </grid>
-                                
-                                </div>
-                                <div style="padding:10px" align="center">
-                                    <div sclass="upscontenido">
-                                        <div sclass="uppers">
-                                            <div id="sloganRow" style="margin: 10px 10px 10px 10px;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <panel >
-                                        <panelchildren>
-                                            <div style="padding: 10px">
-                                            <div id="estadoRow" style="font-weight: bolder;" >
-                                            </div>
-                                            <div id="calleRow"  >
-                                            </div>
-                                            <div id="coloniaRow"  >
-                                            </div>
-                                            <div id="municipioRow"  >
-                                            </div>
-                                            <div id="telefonoRow"  >
-                                            </div>
-                                            </div>
-                                        </panelchildren>
-                                    </panel>
-                                </div>
-                                <div id="mapRow"></div>
-                            
-                            </panelchildren>
-                        </panel>
+							</panelchildren>
+						</panel>
+					</row>
 
-                        <panel width="460px" >
-                            <panelchildren>
-                                <div style="padding: 10px"> <label value="Ranking" sclass="semititulo"></label>
-                                 </div>
-                                 <div id="rank"></div>
-                                
-                                <div>                                      
-                                    <div id="indicators"></div>
-                                </div>
+				</rows>
+			</grid>
+		</div>
+	</div>
 
-                                <div>
-                                    <panel>
-                                        <panelchildren>
-                                            <div style="padding: 10px">
-                                            <div id="giro" style="font-weight: bolder"></div>
-                                            <div id="especialidad"></div>
-                                            </div>
-                                        </panelchildren>
-                                    </panel>
-                                </div>
-                                <div>
-                                    <style>
-     tr.z-list-item,tr.z-list-item a,tr.z-list-item a{font-size:16px;
-        font-weight:bold;
-        text-decoration:none;
-        color:black;}
-                                    </style>
-                                    <panel  >
-                                        <panelchildren>
-                                           <div style="padding: 10px"><label value="Anuncios" sclass="semititulo"></label>
-                                           </div> 
-                                            <div id="promos" style="padding:10px;"></div>
-                                            
-                                        </panelchildren>
-                                    </panel>
-                                
-                                </div>
-                                <div>
-                           
-                                </div>
-                            
-                            </panelchildren>
-                        </panel>
-                    </row>
-                
-                </rows>
-            </grid>
-        </div>
-        
-    </div>
 </zk>

@@ -55,6 +55,14 @@ public class Category extends Base{
 
 
 
+	public Category(Integer id) {
+		super();
+		this.id = id;
+	}
+
+
+
+
 	@Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id", updatable = false, nullable = false)
@@ -138,4 +146,9 @@ public class Category extends Base{
                 return false;
             return this.id==((Category)obj).getId().intValue();
         }
+    
+    public String toString(){
+    	return id +" "+name;
+    }
+    
 }

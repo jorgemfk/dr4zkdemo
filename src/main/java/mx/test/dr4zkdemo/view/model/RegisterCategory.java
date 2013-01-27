@@ -21,6 +21,9 @@
  */
 package mx.test.dr4zkdemo.view.model;
 
+import java.util.List;
+
+import mx.dr.forms.view.DRFellowLink;
 import mx.dr.forms.view.DRMessage;
 import mx.dr.forms.view.DRRootEntity;
 import mx.dr.forms.view.component.DRGrid;
@@ -45,6 +48,8 @@ import mx.dr.util.Base;
 
 @DRActions(actions={
 		@DRFellowLink(action=FormActions.LIST, param="id",fellow=FellowType.SELF,componentPath="//main/myInclude",listLabel=@DRLabel(key="catalogo.editar"),url="/registerCategory.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=EDIT"),
+	    @DRFellowLink(action= FormActions.LIST, param="id",fellow=FellowType.SELF,componentPath="//main/myInclude",listLabel=@DRLabel(key="catalogo.ver"),url="/viewCategory.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=READ"),
+	    @DRFellowLink(action= FormActions.READ,param = "id", paramAction = "mx.dr.ml.view.facade.CatalogFacade@boById"),
 		@DRFellowLink(action=FormActions.ADD, fellow=FellowType.SELF,componentPath="//main/myInclude",url="/genericFind.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=SEARCH",submitAction="mx.dr.ml.view.facade.CatalogFacade@save",sucessMessage=@DRMessage(label=@DRLabel(key="anuncio.msg.alta"))),
 		@DRFellowLink(action=FormActions.EDIT, fellow=FellowType.SELF,componentPath="//main/myInclude",url="/genericFind.zul?dto_class=mx.test.dr4zkdemo.view.model.RegisterCategory&action=SEARCH",submitAction="mx.dr.ml.view.facade.CatalogFacade@save", sucessMessage=@DRMessage(label=@DRLabel(key="anuncio.msg.update")), param="id", paramAction="mx.dr.ml.view.facade.CatalogFacade@boById"),
 		@DRFellowLink(action=FormActions.SEARCH, submitAction="mx.dr.ml.view.facade.CatalogFacade@findByExampleDTO",loadOnInit=true, resultsComponent=@DRListBox(header=true,id="resultado_categorias",itemRenderer=mx.dr.forms.zul.DRResultsListRender.class, dtoResult=RegisterCategory.class))})
@@ -53,13 +58,13 @@ import mx.dr.util.Base;
 public class RegisterCategory extends Base{
 
 
-	@DRField(label=@DRLabel(key="categoria.nombre"),order=2,columnListWidth="300px",searchOperador=DRField.Operator.LIKE, liveValidate=true, actions={FormActions.ADD, FormActions.EDIT, FormActions.SEARCH, FormActions.LIST})
+	@DRField(label=@DRLabel(key="categoria.nombre"),order=2,columnListWidth="300px",searchOperador=DRField.Operator.LIKE, liveValidate=true, actions={FormActions.ADD, FormActions.EDIT, FormActions.SEARCH, FormActions.LIST, FormActions.READ},readParent="nameRow")
 	@DRTextBox(maxlenght=50)
 	@DRValidateNotEmpty
 	@DRValidateBusinessResult(action="mx.dr.ml.view.facade.CategoryFacade@validateXName")
 	private String name;
 
-	@DRField(label=@DRLabel(key="catalogo.id"),order=1, actions={FormActions.EDIT})
+	@DRField(label=@DRLabel(key="catalogo.id"),order=1, actions={FormActions.EDIT, FormActions.READ},readParent="keyRow")
 	@DRIntBox(readOnly=true)
 	@DRValidateNotEmpty
 	private Integer id;
@@ -77,6 +82,22 @@ public class RegisterCategory extends Base{
 	@DRValidateNotEmpty 
 	private MainCategory father;
 
+	@DRField(actions= FormActions.READ, readParent="status", label =
+			@DRLabel(key = "catalogo.status"))
+	@DRLabel(key = DRLabel.NO_LABEL)
+	private String estatusEnum$labelDescription;
+	
+	@DRField(actions= FormActions.READ, readParent="categoryRow", label =
+			@DRLabel(key = "categoria.padre"))
+	@DRLabel(key = DRLabel.NO_LABEL)
+	private String father$name;
+	
+	@DRField(actions= FormActions.READ, readParent="companiesRow", label =
+			@DRLabel(key = "empresa.nombre"))
+	@DRListBox(header=false,model="mx.dr.ml.view.facade.CompanyFacade@requestByCategory",modelParams={"id"},dtoResult=SearchCompanyMain.class)
+	private List companies;
+
+	//not necessary all attributes must be mapped
 	private String will$not$pass;
 
 	public Integer getId() {

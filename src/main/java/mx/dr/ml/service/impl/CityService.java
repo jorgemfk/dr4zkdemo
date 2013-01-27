@@ -31,27 +31,41 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * city service implementation
+ * @author jorge
  *
- * @author JLMR
  */
 @Scope("prototype")
 @Service("ICityService")
 public class CityService implements ICityService{
+	/**
+	 * generic dao
+	 */
     @Resource(name="GenericDao")
     private GenericDao dao;
 
+    /**
+     * @see mx.dr.ml.service.ICityService#findMXCities()
+     */
     @Transactional
     public List<City> findMXCities() throws Exception {
         City estado= new City("MX");
         return dao.findByExample(estado,0, "name");
     }
 
-    public GenericDao getDao() {
-        return dao;
-    }
+	/**
+	 * @return the dao
+	 */
+	public GenericDao getDao() {
+		return dao;
+	}
 
-    public void setDao(GenericDao dao) {
-        this.dao = dao;
-    }
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(GenericDao dao) {
+		this.dao = dao;
+	}
 
+    
 }

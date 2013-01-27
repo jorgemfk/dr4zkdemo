@@ -33,16 +33,23 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 /**
+ * Category service implementation
+ * @author jorge
  *
- * @author JLMR
  */
 @Scope("prototype")
 @Service("ICategoryService")
 public class CategoryService implements ICategoryService{
 
+	/**
+	 * generic dao
+	 */
     @Resource(name="GenericDao")
     private GenericDao dao;
 
+    /**
+     * @see mx.dr.ml.service.ICategoryService#findActive()
+     */
     @Transactional
     public List findActive() throws Exception {
         List  res= dao.findByNamedParam("from Category where status=:status order by name", "status", CatalogStatus.ACTIVE.getId());
@@ -50,11 +57,17 @@ public class CategoryService implements ICategoryService{
         return res;
     }
 
+    /**
+     * @see mx.dr.ml.service.ICategoryService#findMainCategory()
+     */
      @Transactional
     public List findMainCategory() throws Exception {
         return dao.find("from MainCategory order by name");
     }
     
+     /**
+      * @see mx.dr.ml.service.ICategoryService#findAll()
+      */
     @Transactional
     public List findAll() throws Exception {
         List  res= dao.find("from Category order by name");
@@ -62,6 +75,9 @@ public class CategoryService implements ICategoryService{
         return res;
     }
 
+    /**
+     * @see mx.dr.ml.service.ICategoryService#save(String)
+     */
     @Transactional
     public Category save(String value) throws Exception{
         Category vo = new Category();
@@ -73,13 +89,20 @@ public class CategoryService implements ICategoryService{
         return vo;
     }
 
-    public GenericDao getDao() {
-        return dao;
-    }
+	/**
+	 * @return the dao
+	 */
+	public GenericDao getDao() {
+		return dao;
+	}
 
-    public void setDao(GenericDao dao) {
-        this.dao = dao;
-    }
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(GenericDao dao) {
+		this.dao = dao;
+	}
 
+    
 
 }

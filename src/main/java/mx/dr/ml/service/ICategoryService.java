@@ -25,12 +25,34 @@ import java.util.List;
 import mx.test.vo.Category;
 
 /**
+ * service for business categories
+ * @author jorge
  *
- * @author JLMR
  */
 public interface ICategoryService {
+	/**
+	 * find active categories.
+	 * @return category list.
+	 * @throws Exception
+	 */
     public List findActive() throws Exception;
+    /**
+     * find all categories
+     * @return categories list
+     * @throws Exception
+     */
     public List findAll() throws Exception;
+    /**
+     * find all man categories
+     * @return main categories list.
+     * @throws Exception
+     */
     public List findMainCategory() throws Exception;
+    /**
+     * save category by name
+     * @param value name of the category to save.
+     * @return category created.
+     * @throws Exception
+     */
     public Category save(String value) throws Exception;
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<script type="text/javascript"
+		src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyCzdxFh2EH9_HxsnRZOQkIaSe-lCjVQPLQ" />
+	<div apply="mx.dr.forms.controller.DRGenericController"
+		width="100%">
+
+		<panel>
+			<panelchildren style="padding: 20px">
+				<div>
+					<grid style="padding: 20px">
+						<rows>
+							<row id="keyRow" />
+							<row id="nameRow" />
+							<row id="categoryRow" />
+							<row id="status" />
+						</rows>
+
+					</grid>
+					<div id="companiesRow"></div>
+					<button id="returned" label="Return">
+						<attribute name="onClick">
+                             <![CDATA[
+							org.zkoss.zk.ui.Executions.sendRedirect("/");
+							]]>
+                         </attribute>
+					</button>
+				</div>
+			</panelchildren>
+		</panel>
+
+	</div>
+
+</zk>

@@ -29,15 +29,22 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 /**
+ * contract service implementation
+ * @author jorge
  *
- * @author JLMR
  */
 @Scope("prototype")
 @Service("IContractService")
 public class ContractService implements IContractService{
+	/**
+	 * generic dao
+	 */
     @Resource(name = "GenericDao")
     private GenericDao dao;
 
+    /**
+     * @see mx.dr.ml.service.IContractService#findLastContract(String)
+     */
     @Transactional
     public Contract findLastContract(String tipo) throws Exception{
         Contract srch= new Contract();
@@ -45,12 +52,19 @@ public class ContractService implements IContractService{
         return (Contract) dao.findByExampleDesc(srch, 1, "id").get(0);
     }
 
-    public GenericDao getDao() {
-        return dao;
-    }
+	/**
+	 * @return the dao
+	 */
+	public GenericDao getDao() {
+		return dao;
+	}
 
-    public void setDao(GenericDao dao) {
-        this.dao = dao;
-    }
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(GenericDao dao) {
+		this.dao = dao;
+	}
 
+   
 }

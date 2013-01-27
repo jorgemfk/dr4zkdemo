@@ -27,14 +27,35 @@ import mx.test.vo.Company;
 import mx.test.vo.User;
 
 /**
+ * Company Service.
+ * @author jorge
  *
- * @author JLMR
  */
 public interface ICompanyService {
-
-
+		/**
+		 * get company by email.
+		 * @param clave email key
+		 * @return Company founded.
+		 * @throws Exception
+		 */
         public User companyByKey(String clave) throws Exception;
+        /**
+         * Save a new company.
+         * @param dto dr4zk view form valued object.
+         * @throws Exception
+         */
         public void saveNewCompany(GenericDtoIN dto) throws Exception;
+        /**
+         * update a company
+         * @param dto dr4zk view form valued object.
+         * @throws Exception
+         */
         public void updateCompany(GenericDtoIN dto) throws Exception;
+        /**
+         * find company by id
+         * @param dto dr4zk object with the parameter to search.
+         * @return founded Company.
+         * @throws Exception
+         */
         public Company companyById(GenericDtoOneIN dto) throws Exception;
 }

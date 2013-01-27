@@ -42,15 +42,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Generic DAO class for CRUD actions.
+ * @author jorge
+ *
+ */
 @Repository("GenericDao")
 public class GenericDao extends HibernateTemplate implements Serializable {
 
+	/**
+	 * for SessionFactory injection.
+	 */
     @Resource(name = "sessionFactory")
     @Autowired(required = true)
     public void setSessionFactory(SessionFactory sessionFactory) {
         super.setSessionFactory(sessionFactory);
     }
 
+    /**
+     * getting the current session.
+     */
     public Session getSession(){
         return super.getSession();
     }
@@ -59,66 +70,145 @@ public class GenericDao extends HibernateTemplate implements Serializable {
      */
     private static final long serialVersionUID = -2827312197658379736L;
 
+    /**
+     * The current session to get
+     * @return current session.
+     */
     protected Session currentSession() {
         return getSession();
 
     }
 
+    /**
+     * save or update action
+     * @param o object to save
+     */
     public void saveOrUpdate(Object o) {
         Session sess = currentSession();
         sess.saveOrUpdate(o);
     }
 
+    /**
+     * delete action
+     * @param o object to delete
+     */
     public void delete(Object o) {
         Session sess = currentSession();
         sess.delete(o);
     }
 
+    /**
+     * search by id
+     * @param aclass class type to search.
+     * @param id identifier to find.
+     * @return object founded.
+     */
     public Object findById(Class aclass, Object id) {
         Session sess = currentSession();
         return sess.load(aclass, (Serializable) id);
     }
 
+    /**
+     * search all records.
+     * @param aclass class type to search.
+     * @return list of object results
+     */
     public List findAll(Class aclass) {
         Session sess = currentSession();
         return sess.createCriteria(aclass).list();
     }
 
+    /**
+     * find by example on a valued persistent vo
+     * @param vo valued object to be swept in their attributes
+     * @param limit max results
+     * @param order attribute ordered by
+     * @return ascendent list result ordered.
+     * @throws Exception if any error.
+     */
     public List findByExample(Object vo, int limit, String... order) throws Exception {
         return criteriaByExample(vo, false, limit, true, order).list();
     }
 
+    /**
+     * find by example on a valued persistent vo
+     * @param vo valued object to be swept in their attributes
+     * @param limit max results
+     * @param order attribute ordered by
+     * @return descendant list result ordered.
+     * @throws Exception if any error.
+     */
     public List findByExampleDesc(Object vo, int limit, String... order) throws Exception {
         return criteriaByExample(vo, false, limit, false, order).list();
     }
 
+    /**
+     * find unique result on a valued persistent vo
+     * @param vo valued object to be swept in their attributes
+     * @return object funded.
+     * @throws Exception if any error
+     */
     public Object findUniqueByExample(Object vo) throws Exception {
         return (Object) criteriaByExample(vo, false, 0, true).uniqueResult();
     }
 
+    /**
+     * find by example on a valued view dto
+     * @param vo valued object to be swept in their attributes
+     * @param limit max results
+     * @param order attribute ordered by
+     * @return ascendent list result ordered.
+     * @throws Exception if any error.
+     */
     public List findByExampleDTO(Object vo, int limit, String... order) throws Exception {
     	System.out.println("vo:"+vo);
         return criteriaByExample(vo, true, limit, true, order).list();
     }
 
+    /**
+     * find by example on a valued view dto
+     * @param vo valued object to be swept in their attributes
+     * @param limit max results
+     * @param order attribute ordered by
+     * @return descendant list result ordered.
+     * @throws Exception if any error.
+     */
     public List findByExampleDTODesc(Object vo, int limit, String... order) throws Exception {
         return criteriaByExample(vo, true, limit, false, order).list();
     }
 
+    /**
+     * find unique result on a valued view dto
+     * @param vo valued object to be swept in their attributes
+     * @return object funded.
+     * @throws Exception if any error
+     */
     public Object findUniqueByExampleDTO(Object vo) throws Exception {
         return (Object) criteriaByExample(vo, true, 0, true).uniqueResult();
     }
-    
+    /**
+     * only one equal attribute to search.
+     * @param myClass class to search.
+     * @param field attribute name to search
+     * @param val attribute value to search
+     * @return list of results.
+     */
     public List find(Class myClass, String field , Object val){
     	Criteria c = currentSession().createCriteria(myClass);
     	c.add(Restrictions.eq(field, val));
     	return c.list();
     }
 
+
     /**
-     * Metodo principal para la generacion del criteria dinamico
-     * @param instancia objeto valuado a ser barrido en sus atributos
-     * @return criteria para ser tratado
+     * Primary method for the generation of dynamic criteria.
+     * @param vo valued object to be swept in their attributes
+     * @param isDto is a view dto not a persistence class.
+     * @param limit max results number.
+     * @param isAsc is ascendent
+     * @param order attributes orders by.
+     * @return prepared criteria.
+     * @throws Exception if any error.
      */
     protected Criteria criteriaByExample(Object vo, boolean isDto, int limit, boolean isAsc, String... order) throws  Exception{
         Class myClass = null;
@@ -146,9 +236,9 @@ public class GenericDao extends HibernateTemplate implements Serializable {
     }
 
     /**
-     * Metodo recursivo
-     * @param c criteria devuelto para su tratamiento
-     * @param instancia objeto valuado a ser barrido en sus atributos
+     * recursive method for criteria generation.
+     * @param c result criteria 
+     * @param vo valued object to be swept in their attributes
      */
     protected void criteriaOnReflect(Criteria c, Object vo) throws Exception{
 

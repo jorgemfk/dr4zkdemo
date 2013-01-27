@@ -21,11 +21,9 @@
 */
 package mx.test.dr4zkdemo.view.model;
 
-import java.util.List;
 import mx.dr.forms.constants.FormActions;
 import mx.dr.forms.view.DRFellowLink;
 import mx.dr.forms.view.DRField;
-import mx.dr.forms.view.DRModel;
 import mx.dr.forms.view.DRRootEntity;
 import mx.dr.forms.view.component.DRGmaps;
 import mx.dr.forms.view.component.DRHtml;
@@ -49,7 +47,7 @@ public class ViewCompany {
     
     @DRField(actions= FormActions.READ, readParent = "sloganRow", label =
     @DRLabel(key = DRLabel.NO_LABEL))
-    @DRLabel(key = DRLabel.NO_LABEL,sclass="slogan")
+    @DRLabel(key = DRLabel.NO_LABEL)
     private String slogan;
 
     @DRField(actions= FormActions.READ, readParent = "imgPerfil", label =
@@ -65,7 +63,7 @@ public class ViewCompany {
     @DRField(actions= FormActions.READ, readParent = "telefonoRow", label =
     @DRLabel(key = "empresa.telefono"))
     @DRLabel(key = DRLabel.NO_LABEL)
-    private String telefono;
+    private String phone;
 
     @DRField(actions= FormActions.READ, readParent = "bioRow", label =
     @DRLabel(key = DRLabel.NO_LABEL))
@@ -75,21 +73,13 @@ public class ViewCompany {
     @DRField(actions= FormActions.READ, readParent = "especialidad", label =
     @DRLabel(key = DRLabel.NO_LABEL))
     @DRLabel(key = DRLabel.NO_LABEL)
-    private String especialty;
+    private String specialty;
 
     @DRField(actions= FormActions.READ, readParent = "calleRow", label =
     @DRLabel(key = DRLabel.NO_LABEL))
     @DRLabel(key = DRLabel.NO_LABEL)
     private String address$street;
 
-
-    /*
-    @DRReadField(parent = "cpRow", label =
-    @DRLabel(key = "registro.cp"))
-    @DRLabel(key = DRLabel.NO_LABEL)
-    @DRBOField(field = "direccion.cp")
-    private String cp;
-    */
     @DRField(actions= FormActions.READ, readParent = "estadoRow", label =
     @DRLabel(key = DRLabel.NO_LABEL))
     @DRLabel(key = DRLabel.NO_LABEL)
@@ -101,6 +91,7 @@ public class ViewCompany {
     private Double address$latitude;
     private Double address$longitude;
 /*
+ * example view multiple images, doesn't working for this example.
     @DRField(actions= FormActions.READ, readParent="fotosD", label =
     @DRLabel(key = DRLabel.NO_LABEL))
     @DRImage(width = "150px", prepend = "../..",rotate=false,minimages=6,nullimage="/temp/0.png")
@@ -114,9 +105,6 @@ public class ViewCompany {
     public Double getAddress$longitude() {
         return address$longitude;
     }
-
-
-    
 
     public String getBrand() {
         return brand;

@@ -26,16 +26,62 @@ import mx.dr.forms.dto.GenericDtoIN;
 import mx.dr.forms.dto.GenericDtoOneIN;
 
 /**
+ * Service of generic CRUD actions.
+ * @author jorge
  *
- * @author JLMR
  */
 public interface ICatalogService {
+	/**
+	 * Save a object or a list of objects valued from a view form.
+	 * @param dto dr4zk object that encapsulates the result of a form value.
+	 * @throws Exception if error
+	 */
     public void save(GenericDtoIN dto) throws Exception;
+    /**
+     * Save a persistent object
+     * @param o the object to persist
+     * @throws Exception if any error
+     */
     public void save(Object o) throws Exception;
+    /**
+     * find by id
+     * @param dto  dr4zk object that encapsulates the parameter to search a object.
+     * @return unique object
+     * @throws Exception if error
+     */
     public Object boById(GenericDtoOneIN dto) throws Exception;
-    public Object boById(Class clazz, Object id) throws Exception;
+    /**
+     * find by id
+     * @param clazz class of object to find.
+     * @param id object unique identifier
+     * @return unique object
+     * @throws Exception
+     */
+    public <T extends Object>T boById(Class clazz, Object id) throws Exception;
+    /**
+     * find by a view form object valued
+     * @param dto dr4zk object with values with the search parameters
+     * @return list of results.
+     * @throws Exception if error.
+     */
     public List findByExampleDTO(GenericDtoIN  dto) throws Exception;
+    /**
+     * find by a single attribute
+     * @param myClass class to search
+     * @param field name of the attribute
+     * @param val value attribute to search
+     * @return list of results
+     * @throws Exception if error
+     */
     public List find(Class myClass, String field , Object val) throws Exception;
+    /**
+     * find by a list by a example object valued
+     * @param vo persistence object valued
+     * @param limit max results
+     * @param order attributes ordered by
+     * @return list of results.
+     * @throws Exception if error
+     */
     public List<? extends Object> findByExampleDesc(Object vo, int limit, String... order) throws Exception;
         
 }

@@ -26,15 +26,28 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.zkoss.zk.ui.Desktop;
 
 /**
+ * Spring service locator
+ * @author jorge
  *
- * @author JLMR
  */
 public class WebServiceLocator {
 
+	/**
+	 * Get Spring Service Bean Instance
+	 * @param clazz Service class
+	 * @param desk ZK desktop
+	 * @return Service Instance
+	 */
     public static <T extends Object>T getBean(Class clazz, Desktop desk){
         return getBean(clazz,(ServletContext)desk.getWebApp().getNativeContext());
     }
 
+    /**
+     * Get Spring Service Bean Instance
+     * @param clazz Service class
+     * @param context application sevlet context
+     * @return service Instance
+     */
     public static <T extends Object>T getBean(Class clazz, ServletContext context){
         return (T)WebApplicationContextUtils.getRequiredWebApplicationContext(context).getBean(clazz.getSimpleName());
     }

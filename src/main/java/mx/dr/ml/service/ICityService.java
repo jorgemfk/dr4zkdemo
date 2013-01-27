@@ -25,9 +25,15 @@ import java.util.List;
 import mx.test.vo.City;
 
 /**
+ * service for cities.
+ * @author jorge
  *
- * @author JLMR
  */
 public interface ICityService {
+	/**
+	 * find all cities in MX country.
+	 * @return city list.
+	 * @throws Exception
+	 */
     public List<City> findMXCities() throws Exception;
 }

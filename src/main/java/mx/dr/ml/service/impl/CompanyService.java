@@ -22,74 +22,60 @@
 package mx.dr.ml.service.impl;
 
 import java.util.Calendar;
-import javax.annotation.Resource;
-import mx.dr.forms.dto.GenericDtoOneIN;
-import mx.dr.ml.dao.GenericDao;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import mx.dr.ml.service.IAttachmentService;
-import mx.dr.forms.dto.GenericDtoIN;
-import mx.dr.forms.view.utils.DRMediaUtils;
+import javax.annotation.Resource;
+
 import mx.dr.forms.dto.DRMedia;
+import mx.dr.forms.dto.GenericDtoIN;
+import mx.dr.forms.dto.GenericDtoOneIN;
+import mx.dr.forms.view.utils.DRMediaUtils;
 import mx.dr.forms.view.utils.DtoConverter;
-import mx.dr.ml.service.IContractService;
+import mx.dr.ml.dao.GenericDao;
+import mx.dr.ml.service.IAttachmentService;
 import mx.dr.ml.service.ICompanyService;
+import mx.dr.ml.service.IContractService;
 import mx.dr.util.DRGeneralUtils;
-import mx.dr.util.MailSender;
 import mx.test.dr4zkdemo.view.model.EditCompanyMain;
 import mx.test.dr4zkdemo.view.model.RegisterCompanyMain;
 import mx.test.vo.Attachment;
 import mx.test.vo.CatalogStatus;
 import mx.test.vo.Company;
 import mx.test.vo.User;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
-import org.zkoss.util.resource.Labels;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * company service implementation
+ * @author jorge
  *
- * @author JLMR
  */
 @Scope("prototype")
 @Service("ICompanyService")
 public class CompanyService implements ICompanyService {
 
+	/**
+	 * generic dao
+	 */
     @Resource(name = "GenericDao")
     private GenericDao dao;
+    /**
+     * atachment service
+     */
     @Resource(name = "IAttachmentService")
     private IAttachmentService adjuntoService;
+    /**
+     * contract service
+     */
     @Resource(name = "IContractService")
     private IContractService contratoService;
 
-    public GenericDao getDao() {
-        return dao;
-    }
-
-    public void setDao(GenericDao dao) {
-        this.dao = dao;
-    }
-
-    public IAttachmentService getAdjuntoService() {
-        return adjuntoService;
-    }
-
-    public void setAdjuntoService(IAttachmentService adjuntoService) {
-        this.adjuntoService = adjuntoService;
-    }
-
-    public IContractService getContratoService() {
-        return contratoService;
-    }
-
-    public void setContratoService(IContractService contratoService) {
-        this.contratoService = contratoService;
-    }
-
-
-
-
-
+ 
+    /**
+     * @see mx.dr.ml.service.ICompanyService#saveNewCompany(GenericDtoIN)
+     */
     @Transactional
     public void saveNewCompany(GenericDtoIN dto) throws Exception {
         Company user = (Company) dto.getBos().get(0);
@@ -110,6 +96,9 @@ public class CompanyService implements ICompanyService {
         dao.save(user);
     }
 
+    /**
+     * @see mx.dr.ml.service.ICompanyService#updateCompany(GenericDtoIN)
+     */
     @Transactional
     public void updateCompany(GenericDtoIN dto) throws Exception {
         EditCompanyMain view = (EditCompanyMain) dto.getViewDTO();
@@ -127,9 +116,11 @@ public class CompanyService implements ICompanyService {
         }
 
         dao.update(user);
-        //throw new BusinessException("El registro se hizo correctamente", new Exception());
     }
 
+    /**
+     * @see mx.dr.ml.service.ICompanyService#companyByKey(String)
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public User companyByKey(String clave) throws Exception {
         User usr = new User();
@@ -138,7 +129,9 @@ public class CompanyService implements ICompanyService {
     }
 
 
-
+    /**
+     * @see mx.dr.ml.service.ICompanyService#companyById(GenericDtoOneIN)
+     */
     @Transactional
     public Company companyById(GenericDtoOneIN dto) throws Exception {
         Integer id = Integer.valueOf((String) dto.getParam());
@@ -148,5 +141,47 @@ public class CompanyService implements ICompanyService {
         return com;
     }
 
+	/**
+	 * @return the dao
+	 */
+	public GenericDao getDao() {
+		return dao;
+	}
 
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(GenericDao dao) {
+		this.dao = dao;
+	}
+
+	/**
+	 * @return the adjuntoService
+	 */
+	public IAttachmentService getAdjuntoService() {
+		return adjuntoService;
+	}
+
+	/**
+	 * @param adjuntoService the adjuntoService to set
+	 */
+	public void setAdjuntoService(IAttachmentService adjuntoService) {
+		this.adjuntoService = adjuntoService;
+	}
+
+	/**
+	 * @return the contratoService
+	 */
+	public IContractService getContratoService() {
+		return contratoService;
+	}
+
+	/**
+	 * @param contratoService the contratoService to set
+	 */
+	public void setContratoService(IContractService contratoService) {
+		this.contratoService = contratoService;
+	}
+
+ 
 }

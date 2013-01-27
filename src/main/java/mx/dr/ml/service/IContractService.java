@@ -24,9 +24,16 @@ package mx.dr.ml.service;
 import mx.test.vo.Contract;
 
 /**
+ * User contract service
+ * @author jorge
  *
- * @author JLMR
  */
 public interface IContractService {
+	/**
+	 * Find a contract by the type of user
+	 * @param tipo type of user
+	 * @return last registered Contract
+	 * @throws Exception
+	 */
     public Contract findLastContract(String tipo) throws Exception;
 }

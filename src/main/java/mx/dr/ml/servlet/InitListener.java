@@ -36,30 +36,52 @@ import mx.test.vo.MainCategory;
 import mx.test.vo.City;
 
 /**
+ * initial listener for catalog population.
+ * @author jorge
  *
- * @author pcSS
  */
 public class InitListener implements ServletContextListener {
-
+	/*
+	 * (non-Javadoc)
+	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+	 */
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Servlet Context is initialized....");
         Thread th = new TempThread(sce.getServletContext());
         th.start();
     }
 
+    /*
+     * (non-Javadoc)
+     * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+     */
     public void contextDestroyed(ServletContextEvent sce) {
        System.out.println("Servlet Context is destroyed....");
     }
 
+    /**
+     * Populate Catalogs thread.
+     * @author jorge
+     *
+     */
     private class TempThread extends Thread{
+    	/**
+    	 * servlet context
+    	 */
         ServletContext servletContext;
-
+        /**
+         * Constructor by default
+         * @param servletContext
+         */
         public TempThread(ServletContext servletContext) {
             super();
             this.servletContext = servletContext;
         }
 
-
+        /*
+         * (non-Javadoc)
+         * @see java.lang.Thread#run()
+         */
         public void run() {
             System.out.println("Hilo de temporales....");
             ICatalogService  service =(ICatalogService)  WebServiceLocator.getBean(ICatalogService.class, servletContext);

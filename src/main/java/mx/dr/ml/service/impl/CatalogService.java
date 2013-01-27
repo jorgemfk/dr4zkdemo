@@ -23,7 +23,6 @@ package mx.dr.ml.service.impl;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import mx.dr.forms.dto.GenericDtoIN;
@@ -36,26 +35,32 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
+ * Catalog Service Implementation
+ * @author jorge
  *
- * @author JLMR
  */
 @Scope("prototype")
 @Service("ICatalogService")
 public class CatalogService implements ICatalogService {
-
+	/**
+	 * generic dao for CRUD actions.
+	 */
     @Resource(name = "GenericDao")
     private GenericDao dao;
 
+    /**
+     * @see mx.dr.ml.service.ICatalogService#save(Object)
+     */
     @Transactional
     public void save(Object o) throws Exception {
         dao.saveOrUpdate(o);
     }
 
+    /**
+     * @see mx.dr.ml.service.ICatalogService#save(GenericDtoIN)
+     */
     @Transactional
     public void save(GenericDtoIN dto) throws Exception {
         for (Object o : dto.getBos()) {
@@ -70,7 +75,9 @@ public class CatalogService implements ICatalogService {
 
     }
 
-    
+    /**
+     * @see mx.dr.ml.service.ICatalogService#boById(GenericDtoOneIN)
+     */
     @Transactional
     public Object boById(GenericDtoOneIN dto) throws Exception {
         Object com;
@@ -86,13 +93,19 @@ public class CatalogService implements ICatalogService {
         return com;
     }
 
+    /**
+     * @see mx.dr.ml.service.ICatalogService#boById(Class, Object)
+     */
     @Transactional
-    public Object boById(Class clazz, Object id) throws Exception {
+    public <T extends Object>T boById(Class clazz, Object id) throws Exception {
         Object o = dao.get(clazz,(Serializable) id);
         System.out.println(o);
-        return o;
+        return (T)o;
     }
 
+    /**
+     * @see mx.dr.ml.service.ICatalogService#findByExampleDTO(GenericDtoIN)
+     */
     @Transactional
     public List findByExampleDTO(GenericDtoIN dto) throws Exception {
     	System.out.println("dto:"+dto.getViewDTO());
@@ -100,23 +113,34 @@ public class CatalogService implements ICatalogService {
         System.out.println(res);
         return res;
     }
-
+    /**
+     * @see mx.dr.ml.service.ICatalogService#find(Class, String, Object)
+     */
     @Transactional
     public List find(Class myClass, String field , Object val){
     	return dao.find(myClass, field, val);
     }
-    
+    /**
+     * @see mx.dr.ml.service.ICatalogService#findByExampleDesc(Object, int, String...)
+     */
     @Transactional
     public List findByExampleDesc(Object vo, int limit, String... order) throws Exception{
 
         return  dao.findByExampleDesc(vo, limit, order);
     }
-    
-    public GenericDao getDao() {
-        return dao;
-    }
 
-    public void setDao(GenericDao dao) {
-        this.dao = dao;
-    }
+	/**
+	 * @return the dao
+	 */
+	public GenericDao getDao() {
+		return dao;
+	}
+
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(GenericDao dao) {
+		this.dao = dao;
+	}
+    
 }

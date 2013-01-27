@@ -25,10 +25,22 @@ import mx.test.vo.Attachment;
 import org.zkoss.util.media.Media;
 
 /**
+ * File utilities
+ * @author jorge
  *
- * @author JLMR
  */
 public interface IAttachmentService {
+	    /**
+	     * save a uploaded document.
+	     * @param media ZK media object
+	     * @param adjunto document to save.
+	     * @return generated id
+	     * @throws Exception
+	     */
         public Long saveMedia(Media media, Attachment adjunto) throws Exception;
+        /**
+         * write all saved documents on a directory.
+         * @throws Exception if any error.
+         */
         public void writeTempFiles() throws Exception;
 }

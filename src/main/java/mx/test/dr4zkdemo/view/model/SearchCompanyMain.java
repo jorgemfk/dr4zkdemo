@@ -35,6 +35,7 @@ import mx.dr.forms.view.DRField;
 import mx.dr.forms.view.component.DRIntBox;
 import mx.dr.forms.view.validable.DRValidateNotEmpty;
 import mx.dr.util.Base;
+import mx.test.vo.Category;
 /**
  *
  * @author JLMR
@@ -56,6 +57,10 @@ public class SearchCompanyMain extends Base{
     @DRField(actions= {FormActions.SEARCH, FormActions.LIST}, label=@DRLabel(key="catalogo.clave"),order=1,searchOperador=DRField.Operator.EQUALS)
     @DRIntBox(maxlenght=50)
     private Integer id;
+    
+    @DRField(actions= {FormActions.SEARCH, FormActions.LIST}, label=@DRLabel(key="categoria.padre"),order=3,searchOperador=DRField.Operator.EQUALS)
+    @DRListBox(model="mx.dr.ml.view.facade.CategoryFacade@findActive")
+    private Category category;
 
     public Integer getId() {
         return id;
@@ -64,6 +69,34 @@ public class SearchCompanyMain extends Base{
     public void setId(Integer id) {
         this.id = id;
     }
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	/**
+	 * @return the brand
+	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	/**
+	 * @param brand the brand to set
+	 */
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	/**
+	 * @return the category
+	 */
+	public Category getCategory() {
+		return category;
+	}
 
     
 }
