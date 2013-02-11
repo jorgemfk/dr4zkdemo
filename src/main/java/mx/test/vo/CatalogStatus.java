@@ -26,32 +26,88 @@ import mx.dr.forms.view.DRField;
 import mx.dr.forms.view.component.DRLabel;
 import mx.dr.forms.view.utils.DRBOFieldTranslator;
 import org.zkoss.util.resource.Labels;
-
+/**
+ * Catalog Status Enum
+ * @author jorge
+ *
+ */
 public enum CatalogStatus implements DRBOFieldTranslator {
-
+	/**
+	 * possible values for status
+	 */
     ACTIVE("A", "status.name.active"), INACTIVE("I", "status.name.inactive");
+    /**
+     * id for status
+     */
     private String id;
+    /**
+     * label key from properties
+     */
     private String label;
+    /**
+     * label description from properties
+     * the DRField as LIST automatically makes the attribute value visible on listbox or combobox.
+     */
     @DRField(columnListWidth = "200px",label=@DRLabel(key=""),actions= {FormActions.LIST})
     private String labelDescription;
 
+    /**
+     * default parameterized constructor
+     * @param id the id
+     * @param label the label key
+     */
     CatalogStatus(String id, String label) {
         this.id = id;
         this.label = label;
     }
 
-    public String getId() {
-        return id;
+
+    /**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+	/**
+	 * @return the label
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+
+
+	/**
+	 * @param label the label to set
+	 */
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+
+	/**
+	 * get the label description properties key based
+	 * @return
+	 */
+	public String getLabelDescription() {
+        return labelDescription==null?(labelDescription=Labels.getLabel(label)):labelDescription;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public String getLabelDescription() {
-        return Labels.getLabel(label);
-    }
-
+	/**
+	 * get the label for the desired id
+	 * @param id
+	 * @return
+	 */
     public static String getLabel(String id) {
         for (CatalogStatus c : CatalogStatus.values()) {
             if (c.id.equals(id)) {
@@ -61,6 +117,11 @@ public enum CatalogStatus implements DRBOFieldTranslator {
         return null;
     }
 
+    /**
+     * get the enum value for desired id
+     * @param id
+     * @return
+     */
     public static CatalogStatus getValueOf(String id) {
         for (CatalogStatus c : CatalogStatus.values()) {
             if (c.id.equals(id)) {
@@ -70,10 +131,18 @@ public enum CatalogStatus implements DRBOFieldTranslator {
         return null;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see mx.dr.forms.view.utils.DRBOFieldTranslator#getFieldName()
+     */
     public String getFieldName() {
         return "estatus";
     }
 
+    /*
+     * (non-Javadoc)
+     * @see mx.dr.forms.view.utils.DRBOFieldTranslator#getFieldValue()
+     */
     public Object getFieldValue() {
         return this.id;
     }

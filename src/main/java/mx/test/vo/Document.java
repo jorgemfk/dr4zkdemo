@@ -29,35 +29,57 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import mx.dr.util.Base;
+
 /**
+ * Document persistence class
+ * @author jorge
  *
- * @author JLMR
  */
 @Entity
 @Table(name = "ml_document")
-public class Document {
-    @Id
+public class Document extends Base{
+	/**
+	 * serial
+	 */
+	private static final long serialVersionUID = -6553504613095469383L;
+	/**
+	 * Document id
+	 */
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+	/**
+	 * document data content
+	 */
     @Column(name="data_content")
     @Lob
     private byte[] dataContent;
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the dataContent
+	 */
+	public byte[] getDataContent() {
+		return dataContent;
+	}
+	/**
+	 * @param dataContent the dataContent to set
+	 */
+	public void setDataContent(byte[] dataContent) {
+		this.dataContent = dataContent;
+	}
 
-    public byte[] getDataContent() {
-        return dataContent;
-    }
-
-    public void setDataContent(byte[] dataContent) {
-        this.dataContent = dataContent;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 }

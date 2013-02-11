@@ -107,13 +107,11 @@ public class InitListener implements ServletContextListener {
                 City estado= new City();
                 estado.setName("Estado de Mexico");
                 estado.setCountry("MX");
-                estado.setVisible(Boolean.TRUE);
                 service.save(estado);
                 
                 estado= new City();
                 estado.setName("Mexico Distrito Federal");
                 estado.setCountry("MX");
-                estado.setVisible(Boolean.TRUE);
                 service.save(estado);
                 
                 Contract contract = new Contract();

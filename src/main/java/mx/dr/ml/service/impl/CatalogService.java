@@ -67,7 +67,7 @@ public class CatalogService implements ICatalogService {
 
             if (ReflectionUtils.genericGet(o, "status") == null) {
                 ReflectionUtils.genericSet(o, "status", CatalogStatus.ACTIVE.getId());
-                ReflectionUtils.genericSet(o, "fechaAlta", Calendar.getInstance().getTime());
+                ReflectionUtils.genericSet(o, "registryDate", Calendar.getInstance().getTime());
             }
             System.out.println(o);
             dao.saveOrUpdate(o);

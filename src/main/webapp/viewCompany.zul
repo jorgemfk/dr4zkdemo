@@ -6,7 +6,15 @@
 	<div apply="mx.dr.forms.controller.DRGenericController" width="100%">
 		<div align="center">
 			<div id="nombreRow"></div>
-			<div id="bioRow" style="margin: 10px 10px 10px 10px;"></div>
+			<grid>
+			<rows>
+			<row>
+				<div id="bioRow" style="margin: 10px 10px 10px 10px;"></div>
+			    <div id="linkRow" />
+			</row>
+			</rows>
+			</grid>
+			
 		</div>
 
 		<div style="background-color:#edf6e8;" align="left"

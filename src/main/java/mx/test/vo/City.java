@@ -33,69 +33,117 @@ import mx.dr.forms.view.DRField;
 import mx.dr.forms.view.component.DRLabel;
 import mx.dr.util.Base;
 
-
+/**
+ * Category persistence class
+ * @author jorge
+ *
+ */
 @Entity
 @Table(name = "ml_city")
 public class City extends Base {
-    public static final String TODOS="TODAS LAS CIUDADES";
+	
+    /**
+	 * serial
+	 */
+	private static final long serialVersionUID = 5025507036243029839L;
 
+	/**
+	 * static value for all cities combobox
+	 */
+	public static final String TODOS="ALL CITIES";
+
+	/**
+	 * city id
+	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",  nullable = false)
     private Integer id;
+    /**
+     * city name.
+     * the DRField as LIST automatically makes the attribute value visible on listbox or combobox.
+     */
     @DRField(actions={FormActions.LIST},label=@DRLabel(key=""), columnListWidth= "200px")
     private String name;
+    /**
+     * country id
+     */
     @Column(name = "idcountry")
     private String country;
-    @Column(name = "visible")
-    private Boolean visible;
 
+    /**
+     * default constructor
+     */
     public City() {
     }
 
+    /**
+     * constructor
+     * @param id the id
+     * @param nombre the city name
+     */
     public City(Integer id, String nombre) {
         super();
         this.id = id;
         this.name = nombre;
     }
 
+    /**
+     * constructor by country
+     * @param pais country
+     */
     public City(String pais) {
         super();
         this.country = pais;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    /**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setName(String nombre) {
-        this.name = nombre;
-    }
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setCountry(String pais) {
-        this.country = pais;
-    }
+	/**
+	 * @return the country
+	 */
+	public String getCountry() {
+		return country;
+	}
 
-    public Boolean getVisible() {
-        return visible;
-    }
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-    public void setVisible(Boolean visible) {
-        this.visible = visible;
-    }
-
+	/*
+     * (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     public boolean equals(Object obj) {
         if (!(obj instanceof City)) {
             return false;

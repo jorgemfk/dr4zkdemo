@@ -82,8 +82,8 @@ public class CategoryService implements ICategoryService{
     public Category save(String value) throws Exception{
         Category vo = new Category();
         vo.setName(value);
-        vo.setStatus(CatalogStatus.INACTIVE.getId());
-        vo.setFechaAlta(Calendar.getInstance().getTime());
+        vo.setStatus(CatalogStatus.ACTIVE.getId());
+        vo.setRegistryDate(Calendar.getInstance().getTime());
         vo.setFather(new MainCategory(1));
         dao.save(vo);
         return vo;

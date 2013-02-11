@@ -31,31 +31,50 @@ import mx.test.vo.Category;
 import org.zkoss.zk.ui.Executions;
 
 /**
- *
- * @author JLMR
+ * A facade is recommended as necessary pattern to implement since dr4zk will make an instance of this.
+ * Category facade 
+ * @author jorge
  */
 public class CategoryFacade {
+	/**
+     * @see mx.dr.ml.service.ICategoryService#findActive()
+     */
     public List findActive() throws Exception{
         ICategoryService service = (ICategoryService) WebServiceLocator.getBean(ICategoryService.class, Executions.getCurrent().getDesktop());
         return service.findActive();
     }
 
+    
+    /**
+     * @see mx.dr.ml.service.ICategoryService#findAll()
+     */
     public List findAll() throws Exception{
         ICategoryService service = (ICategoryService) WebServiceLocator.getBean(ICategoryService.class, Executions.getCurrent().getDesktop());
         return service.findAll();
     }
 
+    /**
+     * @see mx.dr.ml.service.ICategoryService#findMainCategory()
+     */
     public List findMainCategory() throws Exception{
         ICategoryService service = (ICategoryService) WebServiceLocator.getBean(ICategoryService.class, Executions.getCurrent().getDesktop());
         return service.findMainCategory();
     }
 
-    
+    /**
+     * @see mx.dr.ml.service.ICategoryService#save(String)
+     */
     public Category save(String value) throws Exception{
         ICategoryService service = (ICategoryService) WebServiceLocator.getBean(ICategoryService.class, Executions.getCurrent().getDesktop());
         return service.save(value);
     }
     
+    /**
+     * validate by name, compare the existence of the same value previously saved.
+     * @param value value to compare
+     * @return true if not found, false if found
+     * @throws Exception if any.
+     */
     public boolean validateXName(RegisterCategory value) throws Exception{
         ICatalogService service = (ICatalogService) WebServiceLocator.getBean(ICatalogService.class, Executions.getCurrent().getDesktop());
         List<Category> result=service.find(Category.class, "name", value.getName());

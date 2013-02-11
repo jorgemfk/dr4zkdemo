@@ -21,6 +21,7 @@
 */
 package mx.test.dr4zkdemo.view.model;
 
+import java.util.Date;
 import java.util.List;
 import mx.dr.forms.constants.FormActions;
 import mx.dr.forms.dto.DRMedia;
@@ -32,61 +33,126 @@ import mx.dr.util.Base;
 import mx.test.vo.CatalogStatus;
 import mx.test.vo.Category;
 
+
 /**
- *
+ * Composite view Class for Company.
  * @author jorge
  */
+//need to specify the container, in this case a Grid
+//note that no DRFellowLink or DRRootEntity since them was defined on parent View Class
 @DRGrid(id="empregGrid",width="700px")
-public class EditCompany extends Base {
-    
+public class EditCompany  {
+	/**
+     * company brand name.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order -1 as a Textbox with a previous label with key registro.marca"
+     */
+	//mandatory capture
     @DRValidateNotEmpty
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.marca"),order=1)
+    //the input value will be transformed to uppercase
     @DRTextBox(maxlenght=100, uppercase=true)
     private String brand;
 
+    /**
+     * company category.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 0 as a Combobox with a previous label with key registro.reg.giro
+     */
+	//mandatory capture
     @DRValidateNotEmpty
     @DRField(actions= FormActions.EDIT, label=@DRLabel(key="registro.reg.giro"),order=0)
     @DRListBox(model="mx.dr.ml.view.facade.CategoryFacade@findAll",mold=DRListBox.MOLD.SELECT)
     private Category category;
 
+    /**
+     * company phone.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 4 as a Intbox with a previous label with key registro.telefono
+     */
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.telefono"),order=4)
     @DRIntBox(maxlenght=9)
     private Integer phone;
 
-    @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.slogan"),order=4)
+    /**
+     * company slogan.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 7 as a Textbox with a previous label with key registro.slogan
+     */
+    @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.slogan"),order=7)
     @DRTextBox(maxlenght=199)
     private String slogan;
 
-    @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.especialidad"),order=4)
+    /**
+     * company specialty.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 8 as a Textbox with a previous label with key registro.especialidad
+     */
+    @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.especialidad"),order=8)
     @DRTextBox(rows=2,maxlenght=299,cols=38)
     private String specialty;
 
-    @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.horario"),order=4)
-    @DRTextBox(maxlenght=19)
-    private String schedule;
+    /**
+     * company schedule.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 9 as a Datebox with a previous label with key registro.horario
+     */
+    @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.horario"),order=9)
+    @DRDateBox(format="dd/MM/yyyy")
+    private Date schedule;
 
+    /**
+     * company logo.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 5 as a Custom upload list with a previous label with key registro.reg.logo
+     */
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.reg.logo"),order=5)
+    //Custom multi attach file component 
     @DRAttachList(maxRow=1)
+    //all Media handled objets must marked as DRIsMEdia
     @DRIsMedia
     private List<DRMedia> logo;
 
+    /**
+     * company status.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 5 as a Combo Listbox with a previous label with key catalogo.status
+     */
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="catalogo.status"),order=6)
     @DRListBox(mold=DRListBox.MOLD.SELECT, itemRenderer=mx.dr.forms.zul.DRResultsListSimpleRender.class,
     model="mx.dr.ml.view.facade.CatalogFacade@getCatalogStatus")
     private CatalogStatus estatusEnum;
 
+    /**
+     * company about info.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 1 as a FCKEditor with a previous label with key registro.bio
+     */
     @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.bio"),order=1)
     @DRFCKEditor(width="350px", height="350px")
     private String bio;
 
-    @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.link"),order=1)
+    /**
+     * company external home page url.
+     * <br/>
+     * Is assignable in action EDIT, will be rendered at order 6 as a Textbox with a previous label with key registro.link
+     */
+    @DRField(actions= FormActions.EDIT,label=@DRLabel(key="registro.link"),order=10)
     @DRTextBox(maxlenght=99)
     private String link;
 
+    /**
+     * 
+     * @return the list of media
+     */
     public List<DRMedia> getLogo() {
         return logo;
     }
 
+    /**
+     * 
+     * @param medias the medias to set
+     */
     public void setLogo(List<DRMedia> adjunto) {
         this.logo = adjunto;
     }

@@ -31,11 +31,15 @@ import org.zkoss.zk.ui.Desktop;
 import org.zkoss.zk.ui.Executions;
 
 /**
- *
- * @author JLMR
+ * A facade is recommended as necessary pattern to implement since dr4zk will make an instance of this.
+ * City facade 
+ * @author jorge
  */
 public class CityFacade  {
 
+	/**
+     * @see mx.dr.ml.service.ICityService#findMXCities()
+     */
     public List<City> findMXCities() throws Exception {
         Desktop desk = Executions.getCurrent().getDesktop();
         ICityService service = (ICityService) WebServiceLocator.getBean(ICityService.class, desk);

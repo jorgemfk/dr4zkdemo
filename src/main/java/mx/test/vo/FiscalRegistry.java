@@ -33,48 +33,88 @@ import javax.persistence.Table;
 import mx.dr.util.Base;
 
 /**
- *
+ * Fiscal Regestry persistence class
  * @author jorge
+ *
  */
 @Entity
 @Table(name = "ml_registry_fiscal")
 public class FiscalRegistry extends Base{
-    @Id
+	
+    /**
+	 * serial
+	 */
+	private static final long serialVersionUID = -4542951027360121801L;
+
+	/**
+	 * Registry id
+	 */
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",  nullable = false)
     private Integer id;
-
+	/**
+	 * tax name
+	 */
     @Column(name = "fiscal_name")
     private String fiscalName;
+    /**
+     * tax id
+     */
     private String rfc;
-
+    /**
+     * address
+     */
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "idaddress")
     private Address fiscalAddress;
-
-    public Address getFiscalAddress() {
-        return fiscalAddress;
-    }
-
-    public void setFiscalAddress(Address direccionFiscal) {
-        this.fiscalAddress = direccionFiscal;
-    }
-
-    public String getFiscalName() {
-        return fiscalName;
-    }
-
-    public void setFiscalName(String razonSocial) {
-        this.fiscalName = razonSocial;
-    }
-
-    public String getRfc() {
-        return rfc;
-    }
-
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
-    }
-
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	/**
+	 * @return the fiscalName
+	 */
+	public String getFiscalName() {
+		return fiscalName;
+	}
+	/**
+	 * @param fiscalName the fiscalName to set
+	 */
+	public void setFiscalName(String fiscalName) {
+		this.fiscalName = fiscalName;
+	}
+	/**
+	 * @return the rfc
+	 */
+	public String getRfc() {
+		return rfc;
+	}
+	/**
+	 * @param rfc the rfc to set
+	 */
+	public void setRfc(String rfc) {
+		this.rfc = rfc;
+	}
+	/**
+	 * @return the fiscalAddress
+	 */
+	public Address getFiscalAddress() {
+		return fiscalAddress;
+	}
+	/**
+	 * @param fiscalAddress the fiscalAddress to set
+	 */
+	public void setFiscalAddress(Address fiscalAddress) {
+		this.fiscalAddress = fiscalAddress;
+	}
 
 }

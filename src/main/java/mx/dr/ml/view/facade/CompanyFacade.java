@@ -39,35 +39,61 @@ import mx.test.vo.User;
 import org.zkoss.zk.ui.Executions;
 
 /**
- *
- * @author JLMR
+ * A facade is recommended as necessary pattern to implement since dr4zk will make an instance of this.
+ * Company facade 
+ * @author jorge
  */
 public class CompanyFacade {
 
-
-
+	/**
+     * @see mx.dr.ml.service.ICompanyService#saveNewCompany(GenericDtoIN)
+     */
     public void saveNewCompany(GenericDtoIN dto) throws Exception {
         ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
         service.saveNewCompany(dto);
     }
 
-
+    /**
+     * @see mx.dr.ml.service.ICompanyService#updateCompany(GenericDtoIN)
+     */
     public void updateCompany(GenericDtoIN dto) throws Exception {
         ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
         service.updateCompany(dto);
     }
 
+    /**
+     * @see mx.dr.ml.service.ICompanyService#companyById(GenericDtoOneIN)
+     */
     public Company companyById(GenericDtoOneIN dto) throws Exception {
         ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
         return service.companyById(dto);
     }
 
-
+    /**
+     * @see mx.dr.ml.service.ICompanyService#companyByKey(String)
+     */
     public boolean companyByKey(RegisterCompanyContact dto) throws Exception {
-        ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
-        return service.companyByKey(dto.getKey())==null;
+    	ICompanyService service = (ICompanyService) WebServiceLocator.getBean(ICompanyService.class, Executions.getCurrent().getDesktop());
+    	User result=service.companyByKey(dto.getKey());
+    	if(result==null){
+    		return true;
+    	}
+    	if(dto.getId()==null){
+    		return false;
+    	}
+    	if( dto.getId().intValue() != result.getId()){
+    		return false;
+    	}
+
+    	return true;
     }
-    
+
+    /**
+     * get all companies belonging to a category
+     * @param dto dr4zk object with the necessary parameters to found the companies
+     * @return company list
+     * @throws Exception if any
+     */
     public List requestByCategory(GenericDtoParamsIN dto) throws Exception{
         Integer id= (Integer)dto.get("id");
         GenericDtoIN mydto=new GenericDtoIN();

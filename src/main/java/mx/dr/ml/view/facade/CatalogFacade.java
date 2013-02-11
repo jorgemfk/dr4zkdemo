@@ -77,7 +77,11 @@ public class CatalogFacade {
         return service.findByExampleDTO(dto);
     }
 
-
+    /**
+     * fill status combo with static values
+     * @return status list
+     * @throws Exception
+     */
     public List getCatalogStatus() throws Exception{
         List l=new  ArrayList() ;
         for(CatalogStatus c: CatalogStatus.values()){

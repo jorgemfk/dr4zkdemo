@@ -26,51 +26,82 @@ import mx.dr.forms.view.DRFellowLink;
 import mx.dr.forms.view.DRField;
 import mx.dr.forms.view.DRMessage;
 import mx.dr.forms.view.DRRootEntity;
-import mx.dr.forms.view.component.DRGroupBox;
+import mx.dr.forms.view.component.DRTabPanel;
 import mx.dr.forms.view.component.DRLabel;
 import mx.dr.forms.view.component.DRTabBox;
-import mx.dr.forms.view.component.DRTabPanel;
 /**
- *
- * @author JLMR
+ * View class that is readable in action EDIT, it uses a object Company as a wrapper to fill it's content. 
+ * <br/>In EDIT action the submitAction is the method to save a new Company, on success will show the defined successMessage, the fellowType will define how the next URL will be displayed.
+ * @author jorge
  */
+//componentPath is necessary on FellowType.SELF (ajax render)
 @DRFellowLink(action= FormActions.EDIT,fellow=FellowType.POPUP,
 componentPath="//main/myInclude",url="/genericFind.zul?dto_class=mx.test.dr4zkdemo.view.model.SearchCompanyMain&action=SEARCH",
         submitAction="mx.dr.ml.view.facade.CompanyFacade@updateCompany",
         param="id",
         paramAction="mx.dr.ml.view.facade.CatalogFacade@boById",
-        sucessMessage=@DRMessage(label=@DRLabel(key="anuncio.msg.alta")))
+        successMessage=@DRMessage(label=@DRLabel(key="anuncio.msg.alta")))
 @DRRootEntity(entity=mx.test.vo.Company.class)
+//Define the Tabbox container
 @DRTabBox(width="900px")
 public class EditCompanyMain {
 
-
+	/**
+     * composite fiscal info form.
+     * <br/>
+     * Is assignable in actions EDIT, will be rendered at position 4 as a TabPanel container with title registro.reg.localizacion
+     */
     @DRField(actions= FormActions.EDIT,isField=false, label=@DRLabel(key="registro.reg.info.fiscal"), order=4)
     @DRTabPanel
     private RegisteCompanyFiscal fiscal;
     
-
+    /**
+     * composite address form.
+     * <br/>
+     * Is assignable in actions EDIT, will be rendered at position 3 as a TabPanel container with title registro.reg.localizacion
+     */
     @DRField(actions= FormActions.EDIT,isField=false, label=@DRLabel(key="registro.reg.localizacion"), order=3)
     @DRTabPanel
     private RegisterCompanyAddress address;
-
+    
+    /**
+     * composite company form.
+     * <br/>
+     * Is assignable in actions EDIT, will be rendered at position 2 as a TabPanel container with title registro.reg.comensal
+     */
     @DRField(actions= FormActions.EDIT,isField=false, label=@DRLabel(key="registro.reg.comensal"), order=2)
     @DRTabPanel
     private EditCompany company;
 
+    /**
+     * composite contact form.
+     * <br/>
+     * Is assignable in actions EDIT, will be rendered at position 1 as a TabPanel container with title registro.reg.contacto
+     */
     @DRField(actions= FormActions.EDIT, isField=false, label=@DRLabel(key="registro.reg.contacto"), order=1)
     @DRTabPanel
-    private EditCompanyContact contact;
+    private RegisterCompanyContact contact;
 
+    /**
+     * 
+     * @return the composite Company form
+     */
     public EditCompany getCompany() {
         return company;
     }
-
+    /**
+     * 
+     * @param empresa the composite company form to set
+     */
     public void setCompany(EditCompany empresa) {
         this.company = empresa;
     }
 
-    public EditCompanyContact getContact() {
+    /**
+     * 
+     * @return the composite Company contact form
+     */
+    public RegisterCompanyContact getContact() {
         return contact;
     }
 

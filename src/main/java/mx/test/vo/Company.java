@@ -21,8 +21,9 @@
 */
 package mx.test.vo;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,159 +34,286 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
+ * Company persistence class
+ * @author jorge
  *
- * @author JLMR
  */
 @Entity
 @Table(name = "ml_company")
 @DiscriminatorValue("RES")
 public class Company extends User {
+ 
+    /**
+	 * serial
+	 */
+	private static final long serialVersionUID = 7266475158648007021L;
 
+	/**
+	 * company brand name
+	 */
+	private String brand;
    
-    public Integer getId(){
-        return super.getId();
-    }
-
-
-    private String brand;
-   
+	/**
+	 * about the company
+	 */
     private String bio;
 
-
+    /**
+     * URL to external Homepage
+     */
     private String link;
+    
+    /**
+     * company contact
+     */
     @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn(name = "idcontact")
     private Contact contact;
 
+    /**
+     * company category
+     */
     @ManyToOne
     @JoinColumn(name = "idcategory")
     private Category category;
     
+    /**
+     * company address
+     */
     @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn(name = "idaddress")
     private Address address;
 
+    /**
+     * invoice information
+     */
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "idregistry_fiscal")
     private FiscalRegistry fiscalRegistry;
 
-    
+    /**
+     * company brand logo
+     */
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "idattachment")
     private Attachment logo;
 
+    /**
+     * company phone number
+     */
     private Integer phone;
 
+    /**
+     * company slogan
+     */
     private String slogan;
+    /**
+     * specialty on service
+     */
     private String specialty;
-    private String schedule;
+    /**
+     * schedule for service
+     */
+    private Date schedule;
 
+    /**
+     * dummy
+     */
     @Transient
     public String categoryMainName;
+    /**
+     * dummy
+     */
     @Transient
     public String categoryName;
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String marca) {
-        this.brand = marca;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contacto) {
-        this.contact = contacto;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address direccion) {
-        this.address = direccion;
-    }
-
-    public FiscalRegistry getFiscalRegistry() {
-        return fiscalRegistry;
-    }
-
-    public void setFiscalRegistry(FiscalRegistry registroFiscal) {
-        this.fiscalRegistry = registroFiscal;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer telefono) {
-        this.phone = telefono;
-    }
-
-    public Attachment getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Attachment adjunto) {
-        this.logo = adjunto;
-    }
- 
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
+    /**
+     * category name bridge
+     * @return category name
+     */
     public String getCategoryName(){return category.getName();}
 
+    /**
+     * parent category name bridge
+     * @return category name
+     */
     public String getCategoryMainName(){return category.getFather().getName();}
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category categoria) {
-        this.category = categoria;
-    }
+	/**
+	 * @return the brand
+	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	/**
+	 * @param brand the brand to set
+	 */
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	/**
+	 * @return the bio
+	 */
+	public String getBio() {
+		return bio;
+	}
+
+	/**
+	 * @param bio the bio to set
+	 */
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	/**
+	 * @return the link
+	 */
+	public String getLink() {
+		return link;
+	}
+
+	/**
+	 * @param link the link to set
+	 */
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	/**
+	 * @return the contact
+	 */
+	public Contact getContact() {
+		return contact;
+	}
+
+	/**
+	 * @param contact the contact to set
+	 */
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+
+	/**
+	 * @return the category
+	 */
+	public Category getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public Address getAddress() {
+		return address;
+	}
+
+	/**
+	 * @param address the address to set
+	 */
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	/**
+	 * @return the fiscalRegistry
+	 */
+	public FiscalRegistry getFiscalRegistry() {
+		return fiscalRegistry;
+	}
+
+	/**
+	 * @param fiscalRegistry the fiscalRegistry to set
+	 */
+	public void setFiscalRegistry(FiscalRegistry fiscalRegistry) {
+		this.fiscalRegistry = fiscalRegistry;
+	}
+
+	/**
+	 * @return the logo
+	 */
+	public Attachment getLogo() {
+		return logo;
+	}
+
+	/**
+	 * @param logo the logo to set
+	 */
+	public void setLogo(Attachment logo) {
+		this.logo = logo;
+	}
+
+	/**
+	 * @return the phone
+	 */
+	public Integer getPhone() {
+		return phone;
+	}
+
+	/**
+	 * @param phone the phone to set
+	 */
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
+
+	/**
+	 * @return the slogan
+	 */
+	public String getSlogan() {
+		return slogan;
+	}
+
+	/**
+	 * @param slogan the slogan to set
+	 */
+	public void setSlogan(String slogan) {
+		this.slogan = slogan;
+	}
+
+	/**
+	 * @return the specialty
+	 */
+	public String getSpecialty() {
+		return specialty;
+	}
+
+	/**
+	 * @param specialty the specialty to set
+	 */
+	public void setSpecialty(String specialty) {
+		this.specialty = specialty;
+	}
+
+	/**
+	 * @return the schedule
+	 */
+	public Date getSchedule() {
+		return schedule;
+	}
+
+	/**
+	 * @param schedule the schedule to set
+	 */
+	public void setSchedule(Date schedule) {
+		this.schedule = schedule;
+	}
     
-    public String getSpecialty() {
-        return specialty;
+   
+	/*
+	 * dummy
+	 *
+    public Integer getId(){
+        return super.getId();
     }
-
-    public void setSpecialty(String especialidad) {
-        this.specialty = especialidad;
-    }
-
-    public String getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(String horario) {
-        this.schedule = horario;
-    }
-
-
-
-    public String getSlogan() {
-        return slogan;
-    }
-
-    public void setSlogan(String slogan) {
-        this.slogan = slogan;
-    }
-
-
+	*/
 
 }
